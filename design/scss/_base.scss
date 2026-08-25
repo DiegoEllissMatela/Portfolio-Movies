@@ -1,0 +1,148 @@
+// ==========================================
+// CineFlow SCSS Base & Global Styles
+// ==========================================
+@use 'variables' as *;
+@use 'mixins' as *;
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+  background-color: $color-bg;
+}
+
+body {
+  font-family: $font-family-body;
+  font-size: $font-size-body-md;
+  line-height: 1.6;
+  color: $color-on-surface;
+  background-color: $color-bg;
+  min-height: 100vh;
+  overflow-x: hidden;
+  position: relative;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  &::selection {
+    background: $color-tertiary;
+    color: $color-bg;
+  }
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  font-family: inherit;
+  border: none;
+  background: none;
+  cursor: pointer;
+  outline: none;
+}
+
+input, select, textarea {
+  font-family: inherit;
+  color: inherit;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+// Custom Scrollbar
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(5, 7, 10, 0.9);
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(76, 215, 246, 0.2);
+  border-radius: $radius-full;
+  transition: background $transition-fast;
+
+  &:hover {
+    background: rgba(76, 215, 246, 0.45);
+  }
+}
+
+// Ambient Background Layer
+.c-ambient {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: $z-ambient;
+  overflow: hidden;
+
+  &__glow-1 {
+    position: absolute;
+    top: -15%;
+    right: -10%;
+    width: 750px;
+    height: 750px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(139, 92, 246, 0.18) 0%, rgba(139, 92, 246, 0) 70%);
+    filter: blur(80px);
+    animation: ambient-pulse 12s ease-in-out infinite alternate;
+  }
+
+  &__glow-2 {
+    position: absolute;
+    bottom: -20%;
+    left: -10%;
+    width: 650px;
+    height: 650px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(76, 215, 246, 0.15) 0%, rgba(76, 215, 246, 0) 70%);
+    filter: blur(90px);
+    animation: ambient-pulse 14s ease-in-out infinite alternate-reverse;
+  }
+
+  &__noise {
+    position: absolute;
+    inset: 0;
+    opacity: 0.025;
+    background-image: radial-gradient(#fff 1px, transparent 0);
+    background-size: 24px 24px;
+  }
+}
+
+// Keyframe Animations
+@keyframes ambient-pulse {
+  0% { transform: scale(1) translate(0, 0); opacity: 0.7; }
+  50% { transform: scale(1.15) translate(30px, -20px); opacity: 1; }
+  100% { transform: scale(0.95) translate(-20px, 30px); opacity: 0.6; }
+}
+
+@keyframes float {
+  0% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(-16px) rotate(1.5deg); }
+  100% { transform: translateY(0px) rotate(0deg); }
+}
+
+@keyframes pulse-ring {
+  0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(76, 215, 246, 0.7); }
+  70% { transform: scale(1); box-shadow: 0 0 0 10px rgba(76, 215, 246, 0); }
+  100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(76, 215, 246, 0); }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes scaleIn {
+  from { opacity: 0; transform: scale(0.92); }
+  to { opacity: 1; transform: scale(1); }
+}

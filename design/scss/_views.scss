@@ -1,0 +1,741 @@
+// ==========================================
+// CineFlow SCSS Views Styles (BEM)
+// ==========================================
+@use 'variables' as *;
+@use 'mixins' as *;
+
+// ==========================================
+// 1. HOME VIEW (.v-home)
+// ==========================================
+.v-home {
+  position: relative;
+  width: 100%;
+
+  &__hero {
+    position: relative;
+    height: 85vh;
+    max-height: 820px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    overflow: hidden;
+    padding: 0; // content padding handled inline
+
+    @include desktop {
+      height: 85vh;
+      max-height: 820px;
+    }
+  }
+
+  &__hero-bg {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    overflow: hidden;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center 25%;
+      filter: brightness(0.85);
+      transform: scale(1);
+      transition: transform 6s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    &::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(
+          to bottom,
+          rgba(5, 7, 10, 0.3) 0%,
+          rgba(5, 7, 10, 0.1) 30%,
+          rgba(5, 7, 10, 0.7) 70%,
+          $color-bg 100%
+        ),
+        linear-gradient(
+          to right,
+          rgba(5, 7, 10, 0.85) 0%,
+          rgba(5, 7, 10, 0.35) 45%,
+          transparent 85%
+        );
+    }
+  }
+
+  &__hero-content {
+    position: relative;
+    z-index: 2;
+    max-width: 720px;
+  }
+
+  &__hero-badge {
+    margin-bottom: $spacing-md;
+  }
+
+  &__hero-title {
+    font-family: $font-family-heading;
+    font-size: $font-size-display-lg;
+    font-weight: 800;
+    line-height: 1.05;
+    letter-spacing: -0.03em;
+    color: #fff;
+    margin-bottom: $spacing-md;
+    text-shadow: 0 4px 20px rgba(0, 0, 0, 0.8);
+  }
+
+  &__hero-desc {
+    font-size: $font-size-body-lg;
+    color: $color-on-surface-variant;
+    margin-bottom: $spacing-xl;
+    line-height: 1.6;
+    max-width: 600px;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.7);
+  }
+
+  &__hero-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: $spacing-md;
+    align-items: center;
+  }
+
+  &__sections {
+    padding: 0 $container-padding-mobile;
+    position: relative;
+    z-index: 2;
+
+    @include desktop {
+      padding: 0 $container-padding-desktop;
+    }
+  }
+}
+
+// ==========================================
+// 2. DISCOVERY JOURNEY VIEW (.v-discovery)
+// ==========================================
+.v-discovery {
+  position: relative;
+  min-height: calc(100vh - 72px);
+  padding: 100px $container-padding-mobile 40px;
+
+  @include desktop {
+    padding: 110px $container-padding-desktop 40px;
+  }
+
+  &__header {
+    text-align: center;
+    max-width: 700px;
+    margin: 0 auto $spacing-2xl;
+  }
+
+  &__title {
+    font-family: $font-family-heading;
+    font-size: $font-size-headline-lg;
+    font-weight: 800;
+    color: #fff;
+    margin-bottom: $spacing-xs;
+  }
+
+  &__subtitle {
+    color: $color-on-surface-variant;
+    font-size: $font-size-body-md;
+  }
+
+  // Genre Filters Pill Bar
+  &__genre-bar {
+    display: flex;
+    gap: $spacing-sm;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-bottom: $spacing-2xl;
+  }
+
+  &__genre-pill {
+    padding: 8px 20px;
+    border-radius: $radius-full;
+    font-size: $font-size-label-sm;
+    font-weight: 600;
+    color: $color-on-surface-variant;
+    @include glass-panel(rgba(39, 54, 71, 0.35), 10px);
+    cursor: pointer;
+    transition: all $transition-fast;
+
+    &:hover {
+      color: #fff;
+      border-color: rgba(76, 215, 246, 0.4);
+      transform: translateY(-2px);
+    }
+
+    &--active {
+      background: $color-tertiary-container;
+      color: $color-tertiary;
+      border-color: $color-tertiary;
+      @include glow-cyan(20px, 0.3);
+    }
+  }
+
+  // Nebula Canvas Container
+  &__nebula {
+    position: relative;
+    min-height: 480px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: $spacing-xl;
+    perspective: 1000px;
+    margin-bottom: $spacing-section;
+  }
+
+  // Floating Nebula Orbs
+  &__orb {
+    position: relative;
+    width: 240px;
+    height: 240px;
+    border-radius: 50%;
+    @include glass-panel(rgba(18, 33, 49, 0.5), 25px);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    cursor: pointer;
+    overflow: hidden;
+    transition: all $transition-slow;
+    animation: float 6s ease-in-out infinite alternate;
+
+    @include desktop {
+      width: 280px;
+      height: 280px;
+    }
+
+    &:nth-child(2) {
+      animation-delay: -2s;
+      animation-duration: 7s;
+    }
+
+    &:nth-child(3) {
+      animation-delay: -4s;
+      animation-duration: 8s;
+    }
+
+    &:nth-child(4) {
+      animation-delay: -1s;
+      animation-duration: 6.5s;
+    }
+
+    // Orb Themes
+    &--scifi {
+      border-color: rgba(139, 92, 246, 0.3);
+      @include glow-violet(40px, 0.15);
+      .v-discovery__orb-icon { color: $color-secondary; }
+
+      &:hover {
+        border-color: rgba(139, 92, 246, 0.6);
+        @include glow-violet(60px, 0.4);
+      }
+    }
+
+    &--cyber {
+      border-color: rgba(76, 215, 246, 0.3);
+      @include glow-cyan(40px, 0.15);
+      .v-discovery__orb-icon { color: $color-tertiary; }
+
+      &:hover {
+        border-color: rgba(76, 215, 246, 0.6);
+        @include glow-cyan(60px, 0.4);
+      }
+    }
+
+    &--action {
+      border-color: rgba(255, 100, 100, 0.3);
+      box-shadow: 0 0 40px rgba(255, 100, 100, 0.15);
+      .v-discovery__orb-icon { color: #ff6b6b; }
+
+      &:hover {
+        border-color: rgba(255, 100, 100, 0.6);
+        box-shadow: 0 0 60px rgba(255, 100, 100, 0.4);
+      }
+    }
+
+    &--fantasy {
+      border-color: rgba(234, 179, 8, 0.3);
+      box-shadow: 0 0 40px rgba(234, 179, 8, 0.15);
+      .v-discovery__orb-icon { color: #facc15; }
+
+      &:hover {
+        border-color: rgba(234, 179, 8, 0.6);
+        box-shadow: 0 0 60px rgba(234, 179, 8, 0.4);
+      }
+    }
+
+    // Orb Contents
+    &-content {
+      position: relative;
+      z-index: 2;
+      transition: opacity $transition-base;
+      padding: $spacing-md;
+    }
+
+    &-icon {
+      font-size: 48px;
+      margin-bottom: $spacing-xs;
+    }
+
+    &-title {
+      font-family: $font-family-heading;
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: #fff;
+    }
+
+    &-count {
+      font-size: $font-size-label-sm;
+      color: $color-on-surface-variant;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-top: 4px;
+    }
+
+    // Orb Hover Preview Layer
+    &-preview {
+      position: absolute;
+      inset: 0;
+      border-radius: 50%;
+      opacity: 0;
+      overflow: hidden;
+      @include flex-center;
+      background: rgba(5, 7, 10, 0.85);
+      transition: opacity $transition-base;
+      z-index: 3;
+      padding: $spacing-lg;
+    }
+
+    &-bg {
+      position: absolute;
+      inset: 0;
+      object-fit: cover;
+      opacity: 0.35;
+      mix-blend-mode: screen;
+    }
+
+    &-list {
+      position: relative;
+      z-index: 4;
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      text-align: center;
+
+      li {
+        font-size: $font-size-body-sm;
+        color: $color-on-surface;
+        transition: color $transition-fast;
+
+        &:hover {
+          color: $color-tertiary;
+        }
+      }
+    }
+
+    &:hover &-preview {
+      opacity: 1;
+    }
+
+    &:hover &-content {
+      opacity: 0;
+    }
+  }
+
+  // Dynamic Discovery Movies Grid
+  &__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: $spacing-lg;
+
+    @include desktop {
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    }
+  }
+}
+
+// ==========================================
+// 3. LIBRARY / VAULT VIEW (.v-vault)
+// ==========================================
+.v-vault {
+  position: relative;
+  min-height: calc(100vh - 72px);
+  padding: 100px $container-padding-mobile 40px;
+
+  @include desktop {
+    padding: 110px $container-padding-desktop 40px;
+  }
+
+  &__header {
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-lg;
+    margin-bottom: $spacing-2xl;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    padding-bottom: $spacing-xl;
+
+    @include tablet {
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: flex-end;
+    }
+
+    @include desktop {
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: flex-end;
+    }
+  }
+
+  &__title {
+    font-family: $font-family-heading;
+    font-size: $font-size-headline-lg;
+    font-weight: 800;
+    color: #fff;
+    margin-bottom: 4px;
+  }
+
+  &__subtitle {
+    color: $color-on-surface-variant;
+    font-size: $font-size-body-md;
+  }
+
+  &__actions {
+    display: flex;
+    gap: $spacing-md;
+    align-items: center;
+  }
+
+  &__tabs {
+    display: flex;
+    gap: $spacing-sm;
+    margin-bottom: $spacing-xl;
+    overflow-x: auto;
+    @include hide-scrollbar;
+  }
+
+  &__tab {
+    padding: 8px 18px;
+    border-radius: $radius-full;
+    font-size: $font-size-body-sm;
+    font-weight: 600;
+    color: $color-on-surface-variant;
+    cursor: pointer;
+    transition: all $transition-fast;
+    white-space: nowrap;
+
+    &:hover {
+      color: #fff;
+    }
+
+    &--active {
+      background: rgba(87, 27, 193, 0.35);
+      color: $color-secondary;
+      border: 1px solid rgba(139, 92, 246, 0.4);
+      @include glow-violet(15px, 0.2);
+    }
+  }
+
+  &__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: $spacing-lg;
+
+    @include desktop {
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    }
+  }
+
+  &__empty {
+    text-align: center;
+    padding: $spacing-section $spacing-md;
+    color: $color-on-surface-variant;
+
+    &-icon {
+      font-size: 56px;
+      color: $color-outline;
+      margin-bottom: $spacing-md;
+    }
+
+    &-title {
+      font-family: $font-family-heading;
+      font-size: 1.3rem;
+      color: #fff;
+      margin-bottom: $spacing-xs;
+    }
+  }
+}
+
+// ==========================================
+// 4. FILM EXPERIENCE VIEW (.v-film)
+// ==========================================
+.v-film {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 100px $container-padding-mobile 40px;
+
+  @include desktop {
+    padding: 110px $container-padding-desktop 40px;
+  }
+
+  &__backdrop {
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    overflow: hidden;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: brightness(0.65) blur(4px);
+      transform: scale(1.05);
+    }
+
+    &::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 70% 30%, rgba(5, 7, 10, 0.4) 0%, rgba(5, 7, 10, 0.95) 80%);
+    }
+  }
+
+  &__content-row {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-2xl;
+    margin-bottom: $spacing-2xl;
+
+    @include desktop {
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: flex-start;
+    }
+  }
+
+  &__main-info {
+    max-width: 680px;
+  }
+
+  &__meta-badges {
+    display: flex;
+    flex-wrap: wrap;
+    gap: $spacing-sm;
+    margin-bottom: $spacing-md;
+  }
+
+  &__title {
+    font-family: $font-family-heading;
+    font-size: $font-size-display-lg;
+    font-weight: 800;
+    line-height: 1.1;
+    color: #fff;
+    margin-bottom: $spacing-md;
+    text-shadow: 0 4px 20px rgba(0, 0, 0, 0.8);
+
+    span {
+      background: $gradient-brand;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+  }
+
+  &__synopsis {
+    font-size: $font-size-body-lg;
+    color: $color-on-surface-variant;
+    line-height: 1.7;
+    margin-bottom: $spacing-xl;
+  }
+
+  &__actions {
+    display: flex;
+    align-items: center;
+    gap: $spacing-lg;
+    flex-wrap: wrap;
+  }
+
+  // Floating Director's Insight Panel
+  &__insight-panel {
+    width: 100%;
+    max-width: 360px;
+    @include glass-panel(rgba(39, 54, 71, 0.35), 30px);
+    border-radius: $radius-xl;
+    padding: $spacing-lg;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
+    position: relative;
+    z-index: 2;
+  }
+
+  &__insight-header {
+    display: flex;
+    align-items: center;
+    gap: $spacing-md;
+    margin-bottom: $spacing-md;
+  }
+
+  &__insight-avatar {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: $color-surface-variant;
+    border: 1px solid rgba(76, 215, 246, 0.3);
+    @include flex-center;
+    color: $color-tertiary;
+  }
+
+  &__insight-tag {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: $color-tertiary;
+  }
+
+  &__insight-title {
+    font-size: $font-size-body-sm;
+    font-weight: 600;
+    color: #fff;
+  }
+
+  // Audio Waveform Visualizer
+  &__waveform {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    height: 36px;
+    gap: 3px;
+    margin: $spacing-md 0;
+    opacity: 0.8;
+  }
+
+  &__waveform-bar {
+    flex: 1;
+    background: $color-secondary;
+    border-radius: 2px;
+    min-height: 4px;
+    transition: height 0.2s ease;
+
+    &:nth-child(even) {
+      background: $color-tertiary;
+    }
+
+    &--active {
+      animation: sound-wave 1s ease-in-out infinite alternate;
+    }
+  }
+
+  &__audio-controls {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: $font-size-label-sm;
+    color: $color-on-surface-variant;
+  }
+
+  &__audio-play {
+    color: $color-tertiary;
+    font-size: 28px;
+    cursor: pointer;
+    transition: transform $transition-fast;
+
+    &:hover {
+      transform: scale(1.15);
+      color: #fff;
+    }
+  }
+
+  // Scene Selection Track
+  &__scenes {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+  }
+
+  &__scenes-title {
+    font-size: $font-size-label-sm;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: $color-on-surface-variant;
+    margin-bottom: $spacing-md;
+  }
+
+  &__scene-card {
+    width: 260px;
+    height: 150px;
+    border-radius: $radius-lg;
+    overflow: hidden;
+    position: relative;
+    cursor: pointer;
+    flex-shrink: 0;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    transition: all $transition-base;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform $transition-slow;
+    }
+
+    &::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(5, 7, 10, 0.9) 0%, transparent 60%);
+    }
+
+    &:hover {
+      transform: translateY(-4px);
+      border-color: $color-tertiary;
+      box-shadow: 0 10px 25px rgba(76, 215, 246, 0.3);
+
+      img {
+        transform: scale(1.08);
+      }
+    }
+
+    &-info {
+      position: absolute;
+      bottom: 10px;
+      left: 12px;
+      right: 12px;
+      z-index: 2;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+    }
+
+    &-num {
+      font-size: 11px;
+      font-weight: 700;
+      color: $color-tertiary;
+    }
+
+    &-name {
+      font-size: $font-size-body-sm;
+      font-weight: 600;
+      color: #fff;
+    }
+  }
+}
+
+@keyframes sound-wave {
+  0% { height: 15%; }
+  50% { height: 85%; }
+  100% { height: 35%; }
+}

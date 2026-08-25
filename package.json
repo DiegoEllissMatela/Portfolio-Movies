@@ -1,0 +1,14 @@
+{
+  "name": "cineflow-cinematic-nexus",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "CineFlow - Premium Cinematic Interface with HTML, SCSS (BEM), and JavaScript",
+  "scripts": {
+    "build": "sass design/scss/main.scss design/css/main.css --no-source-map --style=expanded",
+    "build:css": "sass design/scss/main.scss design/css/main.css --no-source-map --style=expanded",
+    "watch:css": "sass --watch design/scss/main.scss design/css/main.css"
+  },
+  "devDependencies": {
+    "sass": "^1.103.1"
+  }
+}

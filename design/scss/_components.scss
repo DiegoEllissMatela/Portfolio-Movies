@@ -1,0 +1,801 @@
+// ==========================================
+// CineFlow SCSS Components (BEM)
+// ==========================================
+@use 'variables' as *;
+@use 'mixins' as *;
+
+// Material Symbols icon helper
+.c-icon {
+  font-family: 'Material Symbols Outlined';
+  font-weight: normal;
+  font-style: normal;
+  font-size: 24px;
+  line-height: 1;
+  letter-spacing: normal;
+  text-transform: none;
+  display: inline-block;
+  white-space: nowrap;
+  word-wrap: normal;
+  direction: ltr;
+  -webkit-font-feature-settings: 'liga';
+  -webkit-font-smoothing: antialiased;
+  vertical-align: middle;
+
+  &--filled {
+    font-variation-settings: 'FILL' 1;
+  }
+}
+
+// Buttons
+.c-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: $spacing-sm;
+  padding: 10px 24px;
+  border-radius: $radius-full;
+  font-family: $font-family-body;
+  font-size: $font-size-label-sm;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  transition: all $transition-base;
+  cursor: pointer;
+  white-space: nowrap;
+
+  &--primary {
+    background: $gradient-brand;
+    color: #05070a;
+    box-shadow: 0 4px 20px rgba(139, 92, 246, 0.35);
+
+    &:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 30px rgba(76, 215, 246, 0.5);
+      filter: brightness(1.1);
+    }
+
+    &:active {
+      transform: translateY(0);
+    }
+  }
+
+  &--glass {
+    @include glass-panel(rgba(39, 54, 71, 0.4), 16px);
+    color: $color-on-surface;
+
+    &:hover {
+      background: rgba(39, 54, 71, 0.7);
+      border-color: rgba(76, 215, 246, 0.4);
+      color: #fff;
+      transform: translateY(-2px);
+    }
+  }
+
+  &--icon-only {
+    width: 44px;
+    height: 44px;
+    padding: 0;
+    border-radius: 50%;
+    @include flex-center;
+  }
+
+  &--circle-play {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    background: $gradient-brand;
+    color: #05070a;
+    @include flex-center;
+    box-shadow: 0 0 35px rgba(208, 188, 255, 0.5);
+    transition: all $transition-base;
+
+    .c-icon {
+      font-size: 32px;
+      margin-left: 3px;
+    }
+
+    &:hover {
+      transform: scale(1.1);
+      box-shadow: 0 0 50px rgba(76, 215, 246, 0.7);
+    }
+  }
+
+  &--sm {
+    padding: 6px 16px;
+    font-size: 0.7rem;
+  }
+
+  &--lg {
+    padding: 14px 32px;
+    font-size: 0.85rem;
+  }
+}
+
+// Badges & Chips
+.c-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 12px;
+  border-radius: $radius-full;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+
+  &--tertiary {
+    background: rgba(76, 215, 246, 0.12);
+    border: 1px solid rgba(76, 215, 246, 0.25);
+    color: $color-tertiary;
+  }
+
+  &--secondary {
+    background: rgba(139, 92, 246, 0.15);
+    border: 1px solid rgba(139, 92, 246, 0.3);
+    color: $color-secondary;
+  }
+
+  &--error {
+    background: rgba(255, 180, 171, 0.12);
+    border: 1px solid rgba(255, 180, 171, 0.3);
+    color: $color-error;
+  }
+
+  &--glass {
+    @include glass-panel(rgba(255, 255, 255, 0.05), 10px);
+    color: $color-on-surface-variant;
+  }
+
+  &__dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: currentColor;
+    animation: pulse-ring 2s infinite;
+  }
+}
+
+// Movie Card Component (BEM)
+.c-movie-card {
+  position: relative;
+  border-radius: $radius-lg;
+  overflow: hidden;
+  cursor: pointer;
+  transition: all $transition-slow;
+  background: $color-surface-container;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  flex-shrink: 0;
+
+  &__poster-wrapper {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+  }
+
+  &__poster {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform $transition-slow;
+  }
+
+  &__overlay {
+    position: absolute;
+    inset: 0;
+    background: $gradient-card-overlay;
+    opacity: 0.75;
+    transition: opacity $transition-base;
+  }
+
+  &__content {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: $spacing-md;
+    z-index: 2;
+    transform: translateY(8px);
+    opacity: 0.9;
+    transition: all $transition-base;
+  }
+
+  &__meta {
+    display: flex;
+    align-items: center;
+    gap: $spacing-sm;
+    margin-bottom: 6px;
+  }
+
+  &__title {
+    font-family: $font-family-heading;
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 4px;
+    @include line-clamp(1);
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.7);
+  }
+
+  &__info {
+    font-size: $font-size-label-sm;
+    color: $color-on-surface-variant;
+    display: flex;
+    align-items: center;
+    gap: $spacing-sm;
+  }
+
+  &__rating {
+    display: flex;
+    align-items: center;
+    gap: 3px;
+    color: #facc15;
+    font-weight: 600;
+
+    .c-icon {
+      font-size: 14px;
+    }
+  }
+
+  &__play-btn {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0.8);
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    @include glass-panel(rgba(255, 255, 255, 0.15), 15px);
+    @include flex-center;
+    color: #fff;
+    opacity: 0;
+    transition: all $transition-base;
+    z-index: 3;
+
+    .c-icon {
+      font-size: 28px;
+    }
+  }
+
+  // Hover States
+  &:hover {
+    transform: translateY(-6px) scale(1.03);
+    border-color: rgba(76, 215, 246, 0.4);
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.6), 0 0 30px rgba(139, 92, 246, 0.25);
+    z-index: 5;
+
+    .c-movie-card__poster {
+      transform: scale(1.08);
+    }
+
+    .c-movie-card__overlay {
+      opacity: 0.9;
+    }
+
+    .c-movie-card__content {
+      transform: translateY(0);
+      opacity: 1;
+    }
+
+    .c-movie-card__play-btn {
+      opacity: 1;
+      transform: translate(-50%, -50%) scale(1);
+    }
+  }
+
+  // Card Variants
+  &--poster {
+    width: 240px;
+    aspect-ratio: 2 / 3;
+
+    @include desktop {
+      width: 270px;
+    }
+  }
+
+  &--wide {
+    width: 320px;
+    aspect-ratio: 16 / 9;
+
+    @include desktop {
+      width: 380px;
+    }
+  }
+
+  &--progress {
+    .c-movie-card__progress-bar {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 4px;
+      background: rgba(255, 255, 255, 0.1);
+      z-index: 4;
+
+      &-fill {
+        height: 100%;
+        background: $gradient-brand;
+        border-radius: $radius-full;
+        box-shadow: 0 0 8px $color-tertiary;
+      }
+    }
+  }
+}
+
+// Search Bar & Autocomplete
+.c-search {
+  position: relative;
+  width: 100%;
+  max-width: 360px;
+
+  &__input-wrap {
+    position: relative;
+    display: flex;
+    align-items: center;
+  }
+
+  &__icon {
+    position: absolute;
+    left: 14px;
+    color: $color-outline;
+    font-size: 20px;
+    pointer-events: none;
+    transition: color $transition-fast;
+  }
+
+  &__input {
+    width: 100%;
+    padding: 10px 40px 10px 42px;
+    background: rgba(13, 28, 45, 0.6);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: $radius-full;
+    font-size: $font-size-body-sm;
+    color: $color-on-surface;
+    backdrop-filter: blur(12px);
+    transition: all $transition-fast;
+
+    &::placeholder {
+      color: $color-outline;
+    }
+
+    &:focus {
+      outline: none;
+      border-color: $color-tertiary;
+      background: rgba(18, 33, 49, 0.9);
+      box-shadow: 0 0 15px rgba(76, 215, 246, 0.25);
+
+      + .c-search__icon {
+        color: $color-tertiary;
+      }
+    }
+  }
+
+  &__clear {
+    position: absolute;
+    right: 12px;
+    color: $color-outline;
+    cursor: pointer;
+    display: none;
+
+    &--visible {
+      display: block;
+    }
+
+    &:hover {
+      color: #fff;
+    }
+  }
+
+  &__dropdown {
+    position: absolute;
+    top: calc(100% + 8px);
+    left: 0;
+    width: 100%;
+    @include glass-panel(rgba(5, 15, 31, 0.95), 24px);
+    border-radius: $radius-lg;
+    padding: $spacing-sm;
+    z-index: $z-modal;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8);
+    display: none;
+    max-height: 400px;
+    overflow-y: auto;
+
+    &--open {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      animation: fadeIn 0.2s ease-out;
+    }
+  }
+
+  &__item {
+    display: flex;
+    align-items: center;
+    gap: $spacing-md;
+    padding: 8px 12px;
+    border-radius: $radius-md;
+    cursor: pointer;
+    transition: background $transition-fast;
+
+    &:hover {
+      background: rgba(76, 215, 246, 0.12);
+    }
+  }
+
+  &__item-poster {
+    width: 36px;
+    height: 48px;
+    object-fit: cover;
+    border-radius: $radius-sm;
+  }
+
+  &__item-info {
+    flex: 1;
+    overflow: hidden;
+  }
+
+  &__item-title {
+    font-size: $font-size-body-sm;
+    font-weight: 600;
+    color: #fff;
+    @include line-clamp(1);
+  }
+
+  &__item-sub {
+    font-size: 11px;
+    color: $color-on-surface-variant;
+  }
+}
+
+// Carousel Controls & Container
+.c-carousel {
+  position: relative;
+  width: 100%;
+  margin-bottom: $spacing-section;
+
+  &__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: $spacing-md;
+    flex-wrap: wrap;
+    gap: $spacing-sm;
+  }
+
+  &__title {
+    font-family: $font-family-heading;
+    font-size: $font-size-headline-sm;
+    font-weight: 700;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    gap: $spacing-sm;
+    flex-wrap: wrap;
+
+    @include mobile {
+      font-size: 1.05rem;
+
+      .c-icon {
+        font-size: 20px;
+      }
+    }
+  }
+
+  &__controls {
+    display: none;
+    gap: $spacing-sm;
+
+    @include tablet {
+      display: flex;
+    }
+    @include desktop {
+      display: flex;
+    }
+  }
+
+  &__control-btn {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    @include glass-panel(rgba(39, 54, 71, 0.4), 10px);
+    @include flex-center;
+    color: $color-on-surface;
+    transition: all $transition-fast;
+
+    &:hover {
+      color: $color-tertiary;
+      border-color: rgba(76, 215, 246, 0.4);
+      background: rgba(76, 215, 246, 0.1);
+    }
+  }
+
+  &__track {
+    display: flex;
+    gap: $spacing-lg;
+    overflow-x: auto;
+    padding-bottom: $spacing-md;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+    user-select: none;
+    @include hide-scrollbar;
+
+    > * {
+      scroll-snap-align: start;
+    }
+
+    &--draggable {
+      cursor: grab;
+    }
+
+    &.is-dragging {
+      cursor: grabbing;
+      scroll-snap-type: none;
+      scroll-behavior: auto;
+
+      * {
+        pointer-events: none;
+      }
+    }
+  }
+}
+
+// Pagination Controls (Discovery View)
+.c-pagination {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: $spacing-md;
+  margin-top: $spacing-2xl;
+  padding: $spacing-md 0;
+  flex-wrap: wrap;
+
+  &__pages {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  &__btn {
+    min-width: 38px;
+    height: 38px;
+    padding: 0 12px;
+    border-radius: $radius-full;
+    font-size: $font-size-label-sm;
+    font-weight: 700;
+    @include glass-panel(rgba(39, 54, 71, 0.45), 12px);
+    color: $color-on-surface-variant;
+    @include flex-center;
+    transition: all $transition-fast;
+    cursor: pointer;
+
+    &:hover:not(:disabled) {
+      color: #fff;
+      border-color: $color-tertiary;
+      background: rgba(76, 215, 246, 0.12);
+      transform: translateY(-2px);
+    }
+
+    &--active {
+      background: $color-tertiary;
+      color: #05070a;
+      border-color: $color-tertiary;
+      @include glow-cyan(20px, 0.45);
+      font-weight: 800;
+
+      &:hover {
+        background: $color-tertiary;
+        color: #05070a;
+      }
+    }
+
+    &--nav {
+      gap: 4px;
+      padding: 0 16px;
+      font-weight: 600;
+
+      .c-icon {
+        font-size: 18px;
+      }
+
+      &:disabled {
+        opacity: 0.35;
+        cursor: not-allowed;
+        pointer-events: none;
+      }
+    }
+  }
+}
+
+// Genre Multiverse Matrix Modal
+.c-genre-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+  gap: $spacing-md;
+  max-height: 480px;
+  overflow-y: auto;
+  padding-right: 4px;
+}
+
+.c-genre-card {
+  padding: 16px 18px;
+  border-radius: $radius-lg;
+  @include glass-panel(rgba(39, 54, 71, 0.35), 15px);
+  cursor: pointer;
+  transition: all $transition-base;
+
+  &__header {
+    display: flex;
+    align-items: center;
+    gap: $spacing-sm;
+    margin-bottom: 6px;
+  }
+
+  &__icon {
+    font-size: 22px;
+    color: $color-tertiary;
+  }
+
+  &__title {
+    font-family: $font-family-heading;
+    font-size: 1rem;
+    font-weight: 700;
+    color: #fff;
+  }
+
+  &__desc {
+    font-size: 11px;
+    color: $color-on-surface-variant;
+    line-height: 1.4;
+  }
+
+  &:hover {
+    transform: translateY(-3px) scale(1.02);
+    border-color: $color-tertiary;
+    background: rgba(76, 215, 246, 0.12);
+    @include glow-cyan(20px, 0.2);
+  }
+
+  &--active {
+    border-color: $color-secondary;
+    background: rgba(139, 92, 246, 0.18);
+    @include glow-violet(25px, 0.3);
+
+    .c-genre-card__icon {
+      color: $color-secondary;
+    }
+  }
+}
+
+// Video Player / Trailer Modal
+.c-modal {
+  position: fixed;
+  inset: 0;
+  z-index: $z-modal;
+  @include flex-center;
+  background: rgba(1, 15, 31, 0.88);
+  backdrop-filter: blur(25px);
+  -webkit-backdrop-filter: blur(25px);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity $transition-base;
+  padding: $spacing-md;
+
+  &--open {
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  &__container {
+    position: relative;
+    width: 100%;
+    max-width: 960px;
+    background: $color-surface-container;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: $radius-xl;
+    overflow: hidden;
+    box-shadow: 0 25px 60px rgba(0, 0, 0, 0.8), 0 0 40px rgba(139, 92, 246, 0.2);
+    transform: scale(0.95);
+    transition: transform $transition-base;
+  }
+
+  &--open &__container {
+    transform: scale(1);
+  }
+
+  &__close {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    @include glass-panel(rgba(0, 0, 0, 0.6), 12px);
+    @include flex-center;
+    color: #fff;
+    z-index: 10;
+    cursor: pointer;
+    transition: all $transition-fast;
+
+    &:hover {
+      background: rgba(255, 100, 100, 0.4);
+      color: #fff;
+      transform: rotate(90deg);
+    }
+  }
+
+  &__video-wrapper {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    background: #000;
+
+    iframe, video {
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+  }
+
+  &__body {
+    padding: $spacing-lg;
+  }
+
+  &__title {
+    font-family: $font-family-heading;
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: $spacing-xs;
+  }
+
+  &__desc {
+    color: $color-on-surface-variant;
+    font-size: $font-size-body-sm;
+  }
+}
+
+// Floating Toast Notification
+.c-toast-container {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: $z-toast;
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-sm;
+  pointer-events: none;
+}
+
+.c-toast {
+  @include glass-panel(rgba(18, 33, 49, 0.95), 20px);
+  border-radius: $radius-md;
+  padding: 12px 20px;
+  display: flex;
+  align-items: center;
+  gap: $spacing-md;
+  color: #fff;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+  pointer-events: auto;
+  animation: fadeIn 0.3s ease-out;
+  border-left: 4px solid $color-tertiary;
+
+  &--success {
+    border-left-color: $color-tertiary;
+    .c-toast__icon { color: $color-tertiary; }
+  }
+
+  &--info {
+    border-left-color: $color-secondary;
+    .c-toast__icon { color: $color-secondary; }
+  }
+
+  &__icon {
+    font-size: 20px;
+  }
+
+  &__msg {
+    font-size: $font-size-body-sm;
+    font-weight: 500;
+  }
+}

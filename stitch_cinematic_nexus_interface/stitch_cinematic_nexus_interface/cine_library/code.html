@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>CineFlow - My Library</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600&amp;family=Sora:wght@600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "background": "#051424",
+                    "inverse-on-surface": "#233143",
+                    "tertiary": "#4cd7f6",
+                    "primary-container": "#05070a",
+                    "primary-fixed": "#e1e2e7",
+                    "surface-tint": "#c5c6cb",
+                    "surface-variant": "#273647",
+                    "surface-container-low": "#0d1c2d",
+                    "secondary-fixed": "#e9ddff",
+                    "surface-container-highest": "#273647",
+                    "surface": "#051424",
+                    "inverse-surface": "#d4e4fa",
+                    "surface-bright": "#2c3a4c",
+                    "on-primary-fixed": "#191c1f",
+                    "on-surface-variant": "#c6c6ca",
+                    "tertiary-fixed-dim": "#4cd7f6",
+                    "primary-fixed-dim": "#c5c6cb",
+                    "surface-container-high": "#1c2b3c",
+                    "tertiary-container": "#00080b",
+                    "secondary-fixed-dim": "#d0bcff",
+                    "on-secondary": "#3c0091",
+                    "on-secondary-fixed": "#23005c",
+                    "outline": "#8f9195",
+                    "on-error-container": "#ffdad6",
+                    "outline-variant": "#45474a",
+                    "on-error": "#690005",
+                    "secondary-container": "#571bc1",
+                    "surface-dim": "#051424",
+                    "on-secondary-fixed-variant": "#5516be",
+                    "on-primary-container": "#76787d",
+                    "error": "#ffb4ab",
+                    "secondary": "#d0bcff",
+                    "on-tertiary-container": "#00849a",
+                    "surface-container-lowest": "#010f1f",
+                    "on-tertiary-fixed-variant": "#004e5c",
+                    "inverse-primary": "#5c5e63",
+                    "on-secondary-container": "#c4abff",
+                    "on-primary": "#2e3134",
+                    "on-surface": "#d4e4fa",
+                    "on-tertiary": "#003640",
+                    "primary": "#c5c6cb",
+                    "on-primary-fixed-variant": "#44474b",
+                    "tertiary-fixed": "#acedff",
+                    "error-container": "#93000a",
+                    "on-tertiary-fixed": "#001f26",
+                    "surface-container": "#122131",
+                    "on-background": "#d4e4fa"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "stack-md": "16px",
+                    "stack-lg": "32px",
+                    "stack-sm": "8px",
+                    "section-gap": "80px",
+                    "container-padding": "40px",
+                    "unit": "8px",
+                    "gutter": "24px"
+            },
+            "fontFamily": {
+                    "label-sm": [
+                            "Plus Jakarta Sans"
+                    ],
+                    "headline-lg-mobile": [
+                            "Sora"
+                    ],
+                    "headline-lg": [
+                            "Sora"
+                    ],
+                    "display-lg": [
+                            "Sora"
+                    ],
+                    "body-lg": [
+                            "Plus Jakarta Sans"
+                    ],
+                    "body-md": [
+                            "Plus Jakarta Sans"
+                    ],
+                    "headline-md": [
+                            "Sora"
+                    ]
+            },
+            "fontSize": {
+                    "label-sm": [
+                            "12px",
+                            {
+                                    "lineHeight": "1",
+                                    "letterSpacing": "0.05em",
+                                    "fontWeight": "600"
+                            }
+                    ],
+                    "headline-lg-mobile": [
+                            "32px",
+                            {
+                                    "lineHeight": "1.2",
+                                    "fontWeight": "700"
+                            }
+                    ],
+                    "headline-lg": [
+                            "48px",
+                            {
+                                    "lineHeight": "1.2",
+                                    "letterSpacing": "-0.02em",
+                                    "fontWeight": "700"
+                            }
+                    ],
+                    "display-lg": [
+                            "72px",
+                            {
+                                    "lineHeight": "1.1",
+                                    "letterSpacing": "-0.04em",
+                                    "fontWeight": "800"
+                            }
+                    ],
+                    "body-lg": [
+                            "18px",
+                            {
+                                    "lineHeight": "1.6",
+                                    "fontWeight": "400"
+                            }
+                    ],
+                    "body-md": [
+                            "16px",
+                            {
+                                    "lineHeight": "1.6",
+                                    "fontWeight": "400"
+                            }
+                    ],
+                    "headline-md": [
+                            "32px",
+                            {
+                                    "lineHeight": "1.3",
+                                    "fontWeight": "600"
+                            }
+                    ]
+            }
+    },
+        },
+      }
+    </script>
+<style>
+        body {
+            background-color: #05070A; /* Midnight Blue base */
+        }
+        
+        /* Glassmorphism utility */
+        .glass-panel {
+            background: rgba(39, 54, 71, 0.4); /* surface-variant/40 */
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        
+        .luminous-shadow {
+            box-shadow: 0 0 30px rgba(76, 215, 246, 0.1);
+        }
+        
+        .movie-card-hover:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 40px rgba(139, 92, 246, 0.3); /* Electric Violet glow */
+        }
+        
+        /* Gradient utilities */
+        .bg-electric-violet {
+            background: linear-gradient(135deg, #8B5CF6, #06B6D4);
+        }
+        .text-electric-violet {
+            background: linear-gradient(135deg, #8B5CF6, #06B6D4);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* Subtle scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: rgba(5, 7, 10, 0.8);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: rgba(76, 215, 246, 0.2);
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: rgba(76, 215, 246, 0.4);
+        }
+    </style>
+</head>
+<body class="text-on-background min-h-screen relative overflow-x-hidden">
+<!-- TopNavBar (Web) -->
+<nav class="fixed top-0 w-full z-50 bg-transparent backdrop-blur-xl bg-gradient-to-b from-background to-transparent transition-all ease-in-out duration-500 hidden md:flex flex justify-between items-center px-container-padding py-stack-md w-full">
+<div class="font-display-lg text-headline-md tracking-tighter text-tertiary">
+            CineFlow
+        </div>
+<div class="flex gap-8 items-center">
+<a class="font-headline-md text-headline-md text-on-surface-variant hover:text-on-surface transition-colors hover:text-tertiary duration-300" href="#">Home</a>
+<a class="font-headline-md text-headline-md text-on-surface-variant hover:text-on-surface transition-colors hover:text-tertiary duration-300" href="#">Discovery</a>
+<a class="font-headline-md text-headline-md text-tertiary border-b-2 border-tertiary pb-1 hover:text-tertiary duration-300" href="#">Library</a>
+</div>
+<div class="flex gap-4 items-center">
+<button class="text-primary hover:text-tertiary transition-colors">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+</button>
+<button class="text-primary hover:text-tertiary transition-colors">
+<span class="material-symbols-outlined" data-icon="account_circle">account_circle</span>
+</button>
+</div>
+</nav>
+<!-- SideNavBar (Web) -->
+<aside class="bg-surface-container-lowest/80 backdrop-blur-3xl fixed left-0 top-0 h-full w-20 hover:w-64 z-[60] transition-all hidden md:flex flex-col border-r border-white/5 shadow-2xl flex flex-col py-stack-lg gap-stack-lg group">
+<div class="px-6 mb-8 mt-20 group-hover:opacity-100 transition-opacity opacity-0 whitespace-nowrap overflow-hidden">
+<h2 class="font-headline-md text-tertiary">CineFlow</h2>
+<p class="font-label-sm text-label-sm text-on-surface-variant mt-1">Premium Experience</p>
+</div>
+<nav class="flex flex-col gap-2 px-2 flex-grow">
+<a class="flex items-center gap-4 px-4 py-3 rounded-xl text-on-surface-variant hover:bg-surface-variant/20 hover:scale-105 duration-200 font-body-md text-body-md transition-all whitespace-nowrap overflow-hidden" href="#">
+<span class="material-symbols-outlined flex-shrink-0" data-icon="home_max">home_max</span>
+<span class="opacity-0 group-hover:opacity-100 transition-opacity duration-300">Home</span>
+</a>
+<a class="flex items-center gap-4 px-4 py-3 rounded-xl text-on-surface-variant hover:bg-surface-variant/20 hover:scale-105 duration-200 font-body-md text-body-md transition-all whitespace-nowrap overflow-hidden" href="#">
+<span class="material-symbols-outlined flex-shrink-0" data-icon="travel_explore">travel_explore</span>
+<span class="opacity-0 group-hover:opacity-100 transition-opacity duration-300">Discovery</span>
+</a>
+<a class="flex items-center gap-4 px-4 py-3 rounded-xl bg-secondary-container/30 text-secondary border-r-4 border-secondary hover:scale-105 duration-200 font-body-md text-body-md transition-all whitespace-nowrap overflow-hidden" href="#">
+<span class="material-symbols-outlined flex-shrink-0" data-icon="subscriptions">subscriptions</span>
+<span class="opacity-0 group-hover:opacity-100 transition-opacity duration-300">Collection</span>
+</a>
+<a class="flex items-center gap-4 px-4 py-3 rounded-xl text-on-surface-variant hover:bg-surface-variant/20 hover:scale-105 duration-200 font-body-md text-body-md transition-all whitespace-nowrap overflow-hidden" href="#">
+<span class="material-symbols-outlined flex-shrink-0" data-icon="local_fire_department">local_fire_department</span>
+<span class="opacity-0 group-hover:opacity-100 transition-opacity duration-300">Trends</span>
+</a>
+</nav>
+<div class="mt-auto px-2">
+<a class="flex items-center gap-4 px-4 py-3 rounded-xl text-on-surface-variant hover:bg-surface-variant/20 hover:scale-105 duration-200 font-body-md text-body-md transition-all whitespace-nowrap overflow-hidden" href="#">
+<span class="material-symbols-outlined flex-shrink-0" data-icon="settings">settings</span>
+<span class="opacity-0 group-hover:opacity-100 transition-opacity duration-300">Settings</span>
+</a>
+</div>
+</aside>
+<!-- Main Content Canvas -->
+<main class="md:ml-20 pt-24 md:pt-32 pb-32 md:pb-24 px-container-padding min-h-screen relative z-10">
+<!-- Background Ambient Glow -->
+<div class="fixed top-[-20%] right-[-10%] w-[800px] h-[800px] rounded-full bg-secondary opacity-10 blur-[150px] pointer-events-none z-0"></div>
+<div class="fixed bottom-[-20%] left-[-10%] w-[600px] h-[600px] rounded-full bg-tertiary opacity-10 blur-[150px] pointer-events-none z-0"></div>
+<!-- Header -->
+<header class="mb-section-gap relative z-10 flex flex-col md:flex-row justify-between items-end gap-stack-md border-b border-white/5 pb-stack-lg">
+<div>
+<h1 class="font-display-lg text-headline-lg-mobile md:text-display-lg text-on-surface mb-2">My Vault</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant">Your personal archive of premium cinema.</p>
+</div>
+<div class="flex gap-4 items-center w-full md:w-auto">
+<div class="relative w-full md:w-64">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline">search</span>
+<input class="w-full bg-surface-container-low/50 border border-white/10 rounded-full py-2 pl-10 pr-4 font-body-md text-body-md text-on-surface placeholder-outline focus:outline-none focus:border-tertiary focus:ring-1 focus:ring-tertiary transition-all backdrop-blur-md" placeholder="Search archive..." type="text"/>
+</div>
+<button class="glass-panel p-2 rounded-full hover:bg-white/5 transition-colors">
+<span class="material-symbols-outlined text-on-surface-variant">filter_list</span>
+</button>
+</div>
+</header>
+<!-- Continue Watching (Floating Carousel) -->
+<section class="mb-section-gap relative z-10">
+<h2 class="font-headline-md text-headline-md text-on-surface mb-stack-md flex items-center gap-2">
+<span class="material-symbols-outlined text-secondary">play_circle</span>
+                Continue Watching
+            </h2>
+<div class="flex gap-stack-md overflow-x-auto pb-8 snap-x snap-mandatory hide-scrollbar relative">
+<!-- Active Card -->
+<div class="min-w-[300px] md:min-w-[450px] rounded-2xl overflow-hidden glass-panel snap-center flex-shrink-0 relative group cursor-pointer transition-all duration-500 movie-card-hover luminous-shadow">
+<div class="aspect-video relative">
+<img class="w-full h-full object-cover" data-alt="A moody, high-contrast cinematic shot from a sci-fi thriller. A lone figure stands before a massive, glowing holographic display in a dark, atmospheric control room. Deep blacks, vivid cyan accents, atmospheric fog. High fidelity, cinematic lighting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDiw1h4I4NYTGs8DgrGXR7p1w05k-WVvQ_HuPHmtOdYF_0psC49deWerImb0M7nwb0hUl0JpdoNoRNBjoCxbpe9XMItUIe0KwVs-sQjjWwRSv4IETBcsNhPSG-U41Sp848LYRnG3jmqKv296cg-Hs7lJPBDcAZ0ad65SDYzZdBk5kYrMiimeIwkPW_qYuCOe-e99gFp9ffMs2L0_y6X0RFDbMX9N7jidgtr8yNkzmxuXj5ht29kLMqzhQ"/>
+<div class="absolute inset-0 bg-gradient-to-t from-background to-transparent opacity-80"></div>
+<!-- Play Button Overlay -->
+<div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+<div class="w-16 h-16 rounded-full bg-white/10 backdrop-blur-md flex items-center justify-center border border-white/20 shadow-[0_0_20px_rgba(255,255,255,0.2)]">
+<span class="material-symbols-outlined text-4xl text-white">play_arrow</span>
+</div>
+</div>
+</div>
+<div class="p-4 absolute bottom-0 left-0 w-full glass-panel border-0 border-t border-white/10 translate-y-2 group-hover:translate-y-0 transition-transform duration-300">
+<h3 class="font-headline-md text-[20px] font-semibold text-on-surface mb-1">Neon Genesis</h3>
+<p class="font-label-sm text-label-sm text-on-surface-variant mb-3">S1:E4 • "The Void"</p>
+<!-- Custom Progress Bar -->
+<div class="w-full h-1 bg-surface-container-highest rounded-full overflow-hidden relative">
+<div class="absolute top-0 left-0 h-full bg-electric-violet w-2/3 rounded-full shadow-[0_0_10px_rgba(139,92,246,0.8)]"></div>
+</div>
+</div>
+</div>
+<!-- Card 2 -->
+<div class="min-w-[300px] md:min-w-[450px] rounded-2xl overflow-hidden glass-panel snap-center flex-shrink-0 relative group cursor-pointer transition-all duration-500 movie-card-hover">
+<div class="aspect-video relative">
+<img class="w-full h-full object-cover opacity-70 group-hover:opacity-100 transition-opacity" data-alt="A sweeping, epic wide shot of a vast desert landscape under a twin-sun sky. Dune buggies raise dust trails in the distance. The lighting is intense and warm, creating long dramatic shadows. A cinematic, high-budget sci-fi aesthetic with rich amber and deep blue tones." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD6m-twW_lLcRMS0Ncq-ba_gTC_IbKO90DjritwTV3bUQTW-gFqtaSl-y096-N4oupDCuj5xpo5_eTI3rdIXiuRU6CK-CtbG8pVIkXAxrM9-SN5oJjOZrLBZeaeu3aBUbBG8-sLdVSvudjwLle-OwQoX4Zmvef_c-uu-DPFnuwS7mGMWeH262NxnrJAdbP3n4x-TZGkdW8qECjbHDU-wveLLskpt_ikMmvjqeW1nqjmqNbmJxSoKkjczw"/>
+<div class="absolute inset-0 bg-gradient-to-t from-background to-transparent opacity-80"></div>
+</div>
+<div class="p-4 absolute bottom-0 left-0 w-full glass-panel border-0 border-t border-white/10 translate-y-2 group-hover:translate-y-0 transition-transform duration-300">
+<h3 class="font-headline-md text-[20px] font-semibold text-on-surface mb-1">Sands of Time</h3>
+<p class="font-label-sm text-label-sm text-on-surface-variant mb-3">1h 12m remaining</p>
+<div class="w-full h-1 bg-surface-container-highest rounded-full overflow-hidden relative">
+<div class="absolute top-0 left-0 h-full bg-electric-violet w-1/4 rounded-full shadow-[0_0_10px_rgba(139,92,246,0.8)]"></div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Bento Grid Vault -->
+<section class="relative z-10">
+<h2 class="font-headline-md text-headline-md text-on-surface mb-stack-md flex items-center gap-2">
+<span class="material-symbols-outlined text-tertiary">inventory_2</span>
+                The Collection
+            </h2>
+<!-- Tags -->
+<div class="flex gap-2 mb-stack-lg overflow-x-auto hide-scrollbar pb-2">
+<button class="px-4 py-1.5 rounded-full bg-[rgba(6,182,212,0.1)] text-tertiary border border-tertiary/20 font-label-sm text-label-sm whitespace-nowrap">All Media</button>
+<button class="px-4 py-1.5 rounded-full glass-panel text-on-surface-variant hover:text-on-surface transition-colors font-label-sm text-label-sm whitespace-nowrap">4K HDR HDR10+</button>
+<button class="px-4 py-1.5 rounded-full glass-panel text-on-surface-variant hover:text-on-surface transition-colors font-label-sm text-label-sm whitespace-nowrap">Sci-Fi</button>
+<button class="px-4 py-1.5 rounded-full glass-panel text-on-surface-variant hover:text-on-surface transition-colors font-label-sm text-label-sm whitespace-nowrap">Noir</button>
+<button class="px-4 py-1.5 rounded-full glass-panel text-on-surface-variant hover:text-on-surface transition-colors font-label-sm text-label-sm whitespace-nowrap">Downloads</button>
+</div>
+<div class="grid grid-cols-2 md:grid-cols-4 gap-stack-md auto-rows-[200px] md:auto-rows-[300px]">
+<!-- Large Feature Item -->
+<div class="col-span-2 row-span-2 rounded-[1rem] overflow-hidden group relative cursor-pointer movie-card-hover border border-white/5">
+<img class="absolute inset-0 w-full h-full object-cover" data-alt="A striking portrait of an android face emerging from shadows, illuminated by harsh, glowing neon pink and cyan lights. The aesthetic is extremely detailed cyberpunk, with visible mechanical seams on the skin. Rain streaks across the lens. High contrast, cinematic, dramatic lighting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC4L9f1ZP7MKoTebWegHZHVEqusdYxGrNcjIuxh-ApqmzgIyto4FBkB9qd0azLM190E0py9oNSGd2igYBANK6kkp_xA_F0dP0JUl5Wb7RdyWuJCgF7HKBoW1EGkh-tZ1dnQlv6r7iomnsaGaU7pdmAZTd1Sord0RXBLO_yq6JzhoQVMZRVCDWWkf-WTHBWjAFPTOdKNRENBWTaHl8Or_Kxrfr3yrd8RFzov34d8KdMs5uQmmHqybx-mEg"/>
+<div class="absolute inset-0 bg-gradient-to-t from-[#05070A] via-transparent to-transparent opacity-90 group-hover:opacity-70 transition-opacity"></div>
+<div class="absolute top-4 right-4 px-3 py-1 rounded-full bg-[rgba(6,182,212,0.1)] text-tertiary backdrop-blur-md border border-tertiary/20 font-label-sm text-label-sm z-10 flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">4k</span> HDR
+                    </div>
+<div class="absolute bottom-0 left-0 w-full p-6 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500 glass-panel border-0 border-t border-white/10">
+<h3 class="font-headline-lg text-headline-lg-mobile md:text-headline-lg text-white mb-2">Cybernetic Echoes</h3>
+<p class="font-body-md text-body-md text-on-surface-variant mb-4 line-clamp-2">In a dystopian metropolis, a rogue AI begins to compose symphonies that manipulate human emotion.</p>
+<div class="flex gap-3">
+<button class="px-6 py-2 rounded-full bg-electric-violet text-white font-label-sm text-label-sm border-0 shadow-[0_0_20px_rgba(139,92,246,0.4)] hover:shadow-[0_0_30px_rgba(139,92,246,0.6)] transition-all">Play Now</button>
+<button class="w-10 h-10 rounded-full glass-panel flex items-center justify-center hover:bg-white/10 transition-colors">
+<span class="material-symbols-outlined text-white">more_vert</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Standard Item 1 -->
+<div class="rounded-[1rem] overflow-hidden group relative cursor-pointer movie-card-hover border border-white/5">
+<img class="absolute inset-0 w-full h-full object-cover" data-alt="A solitary astronaut floating in an immense, starry void. The lighting is cold and harsh, contrasting with the absolute blackness of space. Reflections of distant nebulas are visible in the visor. Cinematic, realistic, awe-inspiring scale." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBfilIfEp7Zlhro4zyfacdOcdFFajn53-yZJedTypvSGyV-GixbtcvrekmbPu3h4tZutQ_PXXebjY3K7SPSYTNAHX2h2FMpghKfoHdF0J-L02DQJ9nE-5rBT3-PqCFtf2mx4vBFjhdoh61jIiMRaQlZcTb84VBCtx_4ojN1410TY3d6OIE_FN_amoilqVgGSxIhyHdk4h_RjJwR6w-oiddeWu6dWLL7UrWhD7lXdeI90wGHiJkt7J4GHQ"/>
+<div class="absolute inset-0 bg-gradient-to-t from-[#05070A] to-transparent opacity-80"></div>
+<div class="absolute bottom-0 left-0 w-full p-4 glass-panel border-0 border-t border-white/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+<h4 class="font-headline-md text-[18px] text-white mb-1 truncate">Void Walker</h4>
+<p class="font-label-sm text-label-sm text-on-surface-variant">2024 • Sci-Fi</p>
+</div>
+</div>
+<!-- Standard Item 2 -->
+<div class="rounded-[1rem] overflow-hidden group relative cursor-pointer movie-card-hover border border-white/5">
+<img class="absolute inset-0 w-full h-full object-cover" data-alt="A macro shot of a delicate, glowing alien flora in a dark, humid jungle environment. The colors are vivid bioluminescent greens and purples against pitch black. High definition, mysterious, immersive nature aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAf3R-BDo_eH0IsywJ4sA9uTR-6pzh7FMQXADs1dTOUUZLqS9H3_40yo05kOrjIsL0TpUOMqm-COQSHjGtKqjd9yvgKuQBMUZJ25pQgXBbctiJghKt1r0WmG7sNjYNgMYdHyYx2O1UK_EjltGIvo6OEx1zVM4C9GHsgTH9I2_j9BJiM3mys8Vo9uTFYgMDdyM_GSl0PSrktZQw0gMuzO41E1KVV4phlOKNfVBhQEKNxQ5MD9yvxbnW_PQ"/>
+<div class="absolute inset-0 bg-gradient-to-t from-[#05070A] to-transparent opacity-80"></div>
+<div class="absolute bottom-0 left-0 w-full p-4 glass-panel border-0 border-t border-white/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+<h4 class="font-headline-md text-[18px] text-white mb-1 truncate">Biolume</h4>
+<p class="font-label-sm text-label-sm text-on-surface-variant">Documentary</p>
+</div>
+</div>
+<!-- Standard Item 3 -->
+<div class="rounded-[1rem] overflow-hidden group relative cursor-pointer movie-card-hover border border-white/5">
+<img class="absolute inset-0 w-full h-full object-cover" data-alt="A vintage 1970s muscle car speeding down a rain-slicked neon-lit city street at night. Motion blur implies extreme speed. The scene is bathed in reflections of red and blue neon lights. Gritty, cinematic action aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBPf5mvr-YIDyAWnT4FZ8YsghNnF4r65x4MD_xRy8GqG_le2JDmOzhCqSToR1yjjeo5nRchST9AKC12o3Rd08pNBZAUXc0ktFZ-vpZgx-CEo4LxyM18FNrbvglbt7-TaFSnxnmuqB0XgIV2xzqDm5I8i-D5e7AGOxMgLEmYSNeWivS2hCmR_2AyU3iPlj7Lqp9h3ympJnfPSMSir6Ftzk7gTePy3NSp5vQ1NLwdK6xpbwYL39WwXvVL7Q"/>
+<div class="absolute inset-0 bg-gradient-to-t from-[#05070A] to-transparent opacity-80"></div>
+<div class="absolute bottom-0 left-0 w-full p-4 glass-panel border-0 border-t border-white/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+<h4 class="font-headline-md text-[18px] text-white mb-1 truncate">Night Drive</h4>
+<p class="font-label-sm text-label-sm text-on-surface-variant">Action • Thriller</p>
+</div>
+</div>
+<!-- Collection Folder -->
+<div class="rounded-[1rem] overflow-hidden group relative cursor-pointer border border-white/10 glass-panel hover:bg-surface-variant/40 transition-colors flex flex-col items-center justify-center p-6 text-center">
+<div class="w-16 h-16 rounded-full bg-surface-container-high flex items-center justify-center mb-4 group-hover:scale-110 transition-transform shadow-[0_0_20px_rgba(0,0,0,0.5)]">
+<span class="material-symbols-outlined text-3xl text-outline">folder_special</span>
+</div>
+<h4 class="font-headline-md text-[18px] text-on-surface mb-1">Director's Cuts</h4>
+<p class="font-label-sm text-label-sm text-on-surface-variant">12 Items</p>
+</div>
+</div>
+</section>
+</main>
+<!-- BottomNavBar (Mobile) -->
+<nav class="bg-surface-container/60 backdrop-blur-2xl fixed bottom-0 left-0 w-full z-50 rounded-t-xl md:hidden border-t border-white/10 shadow-[0_-10px_40px_rgba(76,215,246,0.1)] flex justify-around items-center h-20 px-gutter">
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:text-on-surface transition-transform duration-300 hover:scale-110 group" href="#">
+<span class="material-symbols-outlined mb-1 group-hover:text-tertiary transition-colors" data-icon="movie_filter">movie_filter</span>
+<span class="font-label-sm text-label-sm">Home</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:text-on-surface transition-transform duration-300 hover:scale-110 group" href="#">
+<span class="material-symbols-outlined mb-1 group-hover:text-tertiary transition-colors" data-icon="explore">explore</span>
+<span class="font-label-sm text-label-sm">Explore</span>
+</a>
+<a class="flex flex-col items-center justify-center text-tertiary drop-shadow-[0_0_8px_rgba(76,215,246,0.5)] transition-transform duration-300 scale-110" href="#">
+<span class="material-symbols-outlined mb-1" data-icon="auto_stories" style="font-variation-settings: 'FILL' 1;">auto_stories</span>
+<span class="font-label-sm text-label-sm">Library</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:text-on-surface transition-transform duration-300 hover:scale-110 group" href="#">
+<span class="material-symbols-outlined mb-1 group-hover:text-tertiary transition-colors" data-icon="person">person</span>
+<span class="font-label-sm text-label-sm">Profile</span>
+</a>
+</nav>
+<script>
+        // Simple script to handle horizontal scrolling on cards with mouse wheel
+        const carousels = document.querySelectorAll('.overflow-x-auto');
+        carousels.forEach(carousel => {
+            carousel.addEventListener('wheel', (e) => {
+                if (e.deltaY !== 0) {
+                    e.preventDefault();
+                    carousel.scrollLeft += e.deltaY;
+                }
+            });
+        });
+    </script>
+</body></html>

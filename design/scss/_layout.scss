@@ -1,0 +1,453 @@
+// ==========================================
+// CineFlow SCSS Layout Styles (BEM)
+// ==========================================
+@use 'variables' as *;
+@use 'mixins' as *;
+
+// App Shell Wrapper
+.l-app {
+  display: flex;
+  min-height: 100vh;
+  position: relative;
+  overflow-x: hidden;
+
+  &__main {
+    flex: 1;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    z-index: $z-content;
+    padding-bottom: 90px;
+
+    @include desktop {
+      margin-left: 80px;
+      padding-bottom: 40px;
+    }
+  }
+
+  &__view-container {
+    flex: 1;
+    width: 100%;
+    animation: fadeIn $transition-slow;
+  }
+}
+
+// Top Navigation Bar
+.c-topbar {
+  display: none; // Hidden on mobile, replaced by floating hamburger
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 72px;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 $container-padding-mobile;
+  z-index: $z-nav;
+  background: rgba(5, 7, 10, 0.4);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  transition: all $transition-base;
+
+  @include tablet {
+    display: flex;
+    padding: 0 $container-padding-mobile;
+  }
+
+  @include desktop {
+    display: flex;
+    padding: 0 $container-padding-desktop 0 calc(80px + #{$container-padding-desktop});
+  }
+
+  &--scrolled {
+    background: rgba(5, 7, 10, 0.85);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+  }
+
+  &__brand {
+    display: flex;
+    align-items: center;
+    gap: $spacing-sm;
+    cursor: pointer;
+  }
+
+  &__logo {
+    font-family: $font-family-heading;
+    font-size: 1.5rem;
+    font-weight: 800;
+    letter-spacing: -0.04em;
+    color: $color-tertiary;
+    text-shadow: 0 0 20px rgba(76, 215, 246, 0.4);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+
+    .c-icon {
+      font-size: 26px;
+    }
+  }
+
+  &__nav-links {
+    display: none;
+    gap: $spacing-xl;
+    align-items: center;
+
+    @include tablet {
+      display: flex;
+    }
+    @include desktop {
+      display: flex;
+    }
+  }
+
+  &__link {
+    font-family: $font-family-body;
+    font-size: $font-size-label-sm;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: $color-on-surface-variant;
+    padding: 6px 0;
+    position: relative;
+    transition: color $transition-fast;
+
+    &:hover {
+      color: $color-tertiary;
+    }
+
+    &--active {
+      color: $color-tertiary;
+
+      &::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 2px;
+        background: $color-tertiary;
+        box-shadow: 0 0 8px $color-tertiary;
+        border-radius: $radius-full;
+      }
+    }
+  }
+
+  &__actions {
+    display: flex;
+    align-items: center;
+    gap: $spacing-md;
+  }
+
+  &__action-btn {
+    width: 40px;
+    height: 40px;
+    border-radius: $radius-full;
+    @include flex-center;
+    color: $color-primary;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    transition: all $transition-fast;
+
+    &:hover {
+      color: $color-tertiary;
+      background: rgba(76, 215, 246, 0.1);
+      border-color: rgba(76, 215, 246, 0.3);
+      transform: translateY(-1px);
+    }
+  }
+}
+
+// Mobile Hamburger Button
+.c-mobile-hamburger {
+  position: fixed;
+  top: 16px;
+  right: 16px;
+  width: 48px;
+  height: 48px;
+  border-radius: $radius-full;
+  background: rgba(5, 7, 10, 0.6);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: #fff;
+  z-index: $z-nav;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all $transition-fast;
+
+  @include tablet {
+    display: none;
+  }
+  @include desktop {
+    display: none;
+  }
+}
+
+// Mobile Header Modal
+.c-mobile-header-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  background: rgba(5, 7, 10, 0.95);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  padding: 24px;
+
+  &__close {
+    align-self: flex-end;
+    width: 48px;
+    height: 48px;
+    border-radius: $radius-full;
+    background: rgba(255, 255, 255, 0.05);
+    color: #fff;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 32px;
+  }
+
+  &__brand {
+    font-family: $font-family-heading;
+    font-size: 2rem;
+    font-weight: 800;
+    color: $color-tertiary;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 48px;
+
+    .c-icon {
+      font-size: 32px;
+    }
+  }
+
+  &__nav {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    margin-bottom: 48px;
+
+    a {
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: #fff;
+      text-decoration: none;
+    }
+  }
+
+  &__actions {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin-top: auto;
+
+    button {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      color: #fff;
+      padding: 16px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 1.1rem;
+      font-weight: 600;
+    }
+  }
+}
+
+// Side Navigation Bar (Desktop)
+.c-sidebar {
+  display: none;
+  position: fixed;
+  left: 0;
+  top: 0;
+  height: 100vh;
+  width: 80px;
+  background: rgba(1, 15, 31, 0.85);
+  backdrop-filter: blur(30px);
+  -webkit-backdrop-filter: blur(30px);
+  border-right: 1px solid rgba(255, 255, 255, 0.05);
+  z-index: $z-sidebar;
+  flex-direction: column;
+  padding: $spacing-xl 0;
+  transition: width $transition-slow, box-shadow $transition-slow;
+  box-shadow: 10px 0 40px rgba(0, 0, 0, 0.5);
+  overflow: hidden;
+
+  @include desktop {
+    display: flex;
+  }
+
+  &:hover {
+    width: 240px;
+    box-shadow: 20px 0 60px rgba(0, 0, 0, 0.7);
+
+    .c-sidebar__brand-text,
+    .c-sidebar__label {
+      opacity: 1;
+      visibility: visible;
+      transform: translateX(0);
+    }
+
+    .c-sidebar__brand {
+      justify-content: flex-start;
+      padding: 0 $spacing-lg;
+    }
+  }
+
+  &__brand {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 48px;
+    margin-bottom: $spacing-2xl;
+    text-decoration: none;
+    transition: all $transition-base;
+  }
+
+  &__brand-icon {
+    font-size: 28px;
+    color: $color-tertiary;
+    text-shadow: 0 0 15px rgba(76, 215, 246, 0.5);
+    flex-shrink: 0;
+  }
+
+  &__brand-text {
+    font-family: $font-family-heading;
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: $color-tertiary;
+    margin-left: $spacing-sm;
+    white-space: nowrap;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateX(-10px);
+    transition: all $transition-base;
+  }
+
+  &__menu {
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-sm;
+    padding: 0 $spacing-sm;
+    flex: 1;
+  }
+
+  &__item {
+    display: flex;
+    align-items: center;
+    gap: $spacing-md;
+    padding: 12px 16px;
+    border-radius: $radius-md;
+    color: $color-on-surface-variant;
+    transition: all $transition-fast;
+    white-space: nowrap;
+    position: relative;
+
+    &:hover {
+      color: $color-on-surface;
+      background: rgba(39, 54, 71, 0.35);
+      transform: scale(1.02);
+    }
+
+    &--active {
+      background: rgba(87, 27, 193, 0.35);
+      color: $color-secondary;
+      border-left: 3px solid $color-secondary;
+      @include glow-violet(20px, 0.2);
+
+      .c-sidebar__icon {
+        color: $color-secondary;
+      }
+    }
+  }
+
+  &__icon {
+    font-size: 24px;
+    flex-shrink: 0;
+  }
+
+  &__label {
+    font-size: $font-size-body-sm;
+    font-weight: 600;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateX(-10px);
+    transition: all $transition-base;
+  }
+
+  &__footer {
+    padding: 0 $spacing-sm;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    padding-top: $spacing-md;
+  }
+}
+
+// Mobile Bottom Navigation Bar
+.c-mobile-nav {
+  display: flex;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 68px;
+  background: rgba(18, 33, 49, 0.7);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  z-index: $z-nav;
+  justify-content: space-around;
+  align-items: center;
+  padding: 0 $spacing-sm;
+  box-shadow: 0 -10px 40px rgba(76, 215, 246, 0.08);
+
+  @include desktop {
+    display: none;
+  }
+
+  &__item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    color: $color-on-surface-variant;
+    padding: 6px 12px;
+    border-radius: $radius-md;
+    transition: all $transition-fast;
+
+    &:hover {
+      color: $color-on-surface;
+    }
+
+    &--active {
+      color: $color-tertiary;
+      transform: scale(1.08);
+
+      .c-mobile-nav__icon {
+        color: $color-tertiary;
+        text-shadow: 0 0 12px rgba(76, 215, 246, 0.6);
+        font-variation-settings: 'FILL' 1;
+      }
+    }
+  }
+
+  &__icon {
+    font-size: 22px;
+    transition: transform $transition-fast;
+  }
+
+  &__label {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.03em;
+  }
+}

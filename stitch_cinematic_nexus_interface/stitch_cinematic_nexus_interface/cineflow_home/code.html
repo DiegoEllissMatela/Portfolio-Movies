@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>CineFlow - Home</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600&amp;family=Sora:wght@600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "background": "#051424",
+                      "inverse-on-surface": "#233143",
+                      "tertiary": "#4cd7f6",
+                      "primary-container": "#05070a",
+                      "primary-fixed": "#e1e2e7",
+                      "surface-tint": "#c5c6cb",
+                      "surface-variant": "#273647",
+                      "surface-container-low": "#0d1c2d",
+                      "secondary-fixed": "#e9ddff",
+                      "surface-container-highest": "#273647",
+                      "surface": "#051424",
+                      "inverse-surface": "#d4e4fa",
+                      "surface-bright": "#2c3a4c",
+                      "on-primary-fixed": "#191c1f",
+                      "on-surface-variant": "#c6c6ca",
+                      "tertiary-fixed-dim": "#4cd7f6",
+                      "primary-fixed-dim": "#c5c6cb",
+                      "surface-container-high": "#1c2b3c",
+                      "tertiary-container": "#00080b",
+                      "secondary-fixed-dim": "#d0bcff",
+                      "on-secondary": "#3c0091",
+                      "on-secondary-fixed": "#23005c",
+                      "outline": "#8f9195",
+                      "on-error-container": "#ffdad6",
+                      "outline-variant": "#45474a",
+                      "on-error": "#690005",
+                      "secondary-container": "#571bc1",
+                      "surface-dim": "#051424",
+                      "on-secondary-fixed-variant": "#5516be",
+                      "on-primary-container": "#76787d",
+                      "error": "#ffb4ab",
+                      "secondary": "#d0bcff",
+                      "on-tertiary-container": "#00849a",
+                      "surface-container-lowest": "#010f1f",
+                      "on-tertiary-fixed-variant": "#004e5c",
+                      "inverse-primary": "#5c5e63",
+                      "on-secondary-container": "#c4abff",
+                      "on-primary": "#2e3134",
+                      "on-surface": "#d4e4fa",
+                      "on-tertiary": "#003640",
+                      "primary": "#c5c6cb",
+                      "on-primary-fixed-variant": "#44474b",
+                      "tertiary-fixed": "#acedff",
+                      "error-container": "#93000a",
+                      "on-tertiary-fixed": "#001f26",
+                      "surface-container": "#122131",
+                      "on-background": "#d4e4fa"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "stack-md": "16px",
+                      "stack-lg": "32px",
+                      "stack-sm": "8px",
+                      "section-gap": "80px",
+                      "container-padding": "40px",
+                      "unit": "8px",
+                      "gutter": "24px"
+              },
+              "fontFamily": {
+                      "label-sm": [
+                              "Plus Jakarta Sans"
+                      ],
+                      "headline-lg-mobile": [
+                              "Sora"
+                      ],
+                      "headline-lg": [
+                              "Sora"
+                      ],
+                      "display-lg": [
+                              "Sora"
+                      ],
+                      "body-lg": [
+                              "Plus Jakarta Sans"
+                      ],
+                      "body-md": [
+                              "Plus Jakarta Sans"
+                      ],
+                      "headline-md": [
+                              "Sora"
+                      ]
+              },
+              "fontSize": {
+                      "label-sm": [
+                              "12px",
+                              {
+                                      "lineHeight": "1",
+                                      "letterSpacing": "0.05em",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "headline-lg-mobile": [
+                              "32px",
+                              {
+                                      "lineHeight": "1.2",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "headline-lg": [
+                              "48px",
+                              {
+                                      "lineHeight": "1.2",
+                                      "letterSpacing": "-0.02em",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "display-lg": [
+                              "72px",
+                              {
+                                      "lineHeight": "1.1",
+                                      "letterSpacing": "-0.04em",
+                                      "fontWeight": "800"
+                              }
+                      ],
+                      "body-lg": [
+                              "18px",
+                              {
+                                      "lineHeight": "1.6",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "body-md": [
+                              "16px",
+                              {
+                                      "lineHeight": "1.6",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "headline-md": [
+                              "32px",
+                              {
+                                      "lineHeight": "1.3",
+                                      "fontWeight": "600"
+                              }
+                      ]
+              }
+      },
+          },
+        }
+    </script>
+<style>
+        .glass-panel {
+            background: rgba(5, 7, 10, 0.4);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .glow-active {
+            box-shadow: 0 0 30px rgba(76, 215, 246, 0.3);
+        }
+        .hide-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .hide-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body-md min-h-screen overflow-x-hidden selection:bg-tertiary selection:text-tertiary-container">
+<!-- Hero Background Image (Simulating Video) -->
+<div class="fixed inset-0 w-full h-full z-0">
+<div class="bg-cover bg-center bg-no-repeat w-full h-full" data-alt="A breathtaking, cinematic ultra-wide shot of a futuristic metropolis stretching into space, illuminated by neon blues and electric purples. Massive starships hover ominously in the deep cosmic background. The atmosphere is dense with mystery and high-fidelity sci-fi tension. The scene is rendered in an immersive, high-end 8k resolution style, blending deep midnight blues with cyber cyan accents to match the dark mode CineFlow aesthetic." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAP_cYKBP3wVPumjksOuduzrTBLylFv0hKMRT95rxCI__h86G37Dx0gfzOVeb5oJrw55S5UOTY4GL-fzzSWJq5sFvbM69kkh2X6oRk3TywLWvSUqU63psHEI33Sd1azPSrrkstVv2P-0FkxNqJcIQv-C5tVAqaD96J8fRelC4ENymO_h1lNQ6rYygZlKn6beeiF51JOGfE2-4j4uJ1eNs6bljYzfAw1dpfepknlYybEm_zCA0wUM6zyqA')"></div>
+<div class="absolute inset-0 bg-gradient-to-t from-background via-background/60 to-transparent"></div>
+<div class="absolute inset-0 bg-gradient-to-r from-background/80 via-transparent to-transparent"></div>
+</div>
+<!-- Top Navigation (Web) / TopAppBar -->
+<nav class="hidden md:flex justify-between items-center px-container-padding py-stack-md w-full bg-transparent backdrop-blur-xl fixed top-0 z-50 bg-gradient-to-b from-background to-transparent transition-all ease-in-out duration-500">
+<div class="flex items-center gap-gutter">
+<span class="font-display-lg text-headline-md tracking-tighter text-tertiary">CineFlow</span>
+<div class="flex gap-stack-lg ml-stack-lg">
+<a class="text-tertiary border-b-2 border-tertiary pb-1 font-label-sm text-label-sm hover:text-tertiary duration-300" href="#">Home</a>
+<a class="text-on-surface-variant hover:text-on-surface transition-colors font-label-sm text-label-sm hover:text-tertiary duration-300" href="#">Discovery</a>
+<a class="text-on-surface-variant hover:text-on-surface transition-colors font-label-sm text-label-sm hover:text-tertiary duration-300" href="#">Library</a>
+</div>
+</div>
+<div class="flex items-center gap-stack-md">
+<button class="text-primary hover:text-tertiary duration-300 transition-all ease-in-out">
+<span class="material-symbols-outlined text-[24px]">notifications</span>
+</button>
+<button class="text-primary hover:text-tertiary duration-300 transition-all ease-in-out">
+<span class="material-symbols-outlined text-[24px]">account_circle</span>
+</button>
+</div>
+</nav>
+<!-- Side Navigation (Web - Hidden initially as per SideNavBar spec, but added for completeness if hovered) -->
+<nav class="fixed left-0 top-0 h-full w-20 hover:w-64 z-[60] transition-all hidden md:flex flex-col border-r border-white/5 shadow-2xl bg-surface-container-lowest/80 backdrop-blur-3xl group py-stack-lg gap-stack-lg">
+<div class="px-stack-md mb-stack-lg flex items-center justify-center group-hover:justify-start transition-all">
+<span class="font-headline-md text-tertiary group-hover:opacity-100 transition-opacity hidden group-hover:block ml-stack-sm">CineFlow</span>
+</div>
+<a class="flex items-center gap-stack-md px-stack-md py-stack-sm bg-secondary-container/30 text-secondary border-r-4 border-secondary group-hover:px-gutter mx-stack-sm rounded-lg hover:scale-105 duration-200" href="#">
+<span class="material-symbols-outlined text-[24px]">home_max</span>
+<span class="font-label-sm text-label-sm opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap hidden group-hover:block">Home</span>
+</a>
+<a class="flex items-center gap-stack-md px-stack-md py-stack-sm text-on-surface-variant hover:bg-surface-variant/20 group-hover:px-gutter mx-stack-sm rounded-lg hover:scale-105 duration-200" href="#">
+<span class="material-symbols-outlined text-[24px]">travel_explore</span>
+<span class="font-label-sm text-label-sm opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap hidden group-hover:block">Discovery</span>
+</a>
+<a class="flex items-center gap-stack-md px-stack-md py-stack-sm text-on-surface-variant hover:bg-surface-variant/20 group-hover:px-gutter mx-stack-sm rounded-lg hover:scale-105 duration-200" href="#">
+<span class="material-symbols-outlined text-[24px]">subscriptions</span>
+<span class="font-label-sm text-label-sm opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap hidden group-hover:block">Collection</span>
+</a>
+</nav>
+<!-- Main Content Area -->
+<main class="relative z-10 pt-[30vh] md:pt-[40vh] pb-[120px] md:pl-24 px-container-padding md:pr-container-padding flex flex-col justify-end min-h-screen pointer-events-none">
+<!-- Hero Content -->
+<div class="max-w-3xl pointer-events-auto mb-section-gap">
+<div class="inline-flex items-center gap-2 px-3 py-1 rounded-full glass-panel mb-stack-md">
+<span class="w-2 h-2 rounded-full bg-tertiary animate-pulse"></span>
+<span class="font-label-sm text-label-sm text-tertiary tracking-widest uppercase">Now Premiering</span>
+</div>
+<h1 class="font-display-lg text-headline-lg-mobile md:text-display-lg text-on-background mb-stack-sm drop-shadow-2xl">
+                Echoes of Eternity
+            </h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant mb-stack-lg max-w-xl">
+                When humanity discovers the remnants of an ancient stellar network, a rogue pilot must navigate fractured timelines to prevent a cosmic collapse.
+            </p>
+<div class="flex gap-stack-md">
+<button class="bg-gradient-to-r from-secondary-container to-tertiary text-on-primary-fixed px-stack-lg py-stack-sm rounded-full font-label-sm text-label-sm hover:brightness-110 glow-active transition-all duration-300 flex items-center gap-2">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">play_arrow</span>
+                    Watch Now
+                </button>
+<button class="glass-panel text-on-surface px-stack-lg py-stack-sm rounded-full font-label-sm text-label-sm hover:bg-surface-variant/50 transition-all duration-300 flex items-center gap-2">
+<span class="material-symbols-outlined">add</span>
+                    My List
+                </button>
+</div>
+</div>
+<!-- Horizontal Fluid Carousel -->
+<div class="pointer-events-auto -mx-container-padding px-container-padding md:mx-0 md:px-0">
+<div class="flex items-center justify-between mb-stack-md md:pr-container-padding">
+<h2 class="font-headline-md text-headline-md text-on-background">Trending Now</h2>
+<div class="flex gap-2 hidden md:flex">
+<button class="glass-panel p-2 rounded-full hover:text-tertiary transition-colors"><span class="material-symbols-outlined">chevron_left</span></button>
+<button class="glass-panel p-2 rounded-full hover:text-tertiary transition-colors"><span class="material-symbols-outlined">chevron_right</span></button>
+</div>
+</div>
+<div class="flex gap-gutter overflow-x-auto hide-scrollbar pb-stack-lg snap-x snap-mandatory pr-container-padding md:pr-0">
+<!-- Card 1 -->
+<div class="min-w-[280px] md:min-w-[320px] aspect-[2/3] relative rounded-xl overflow-hidden group snap-start cursor-pointer transition-transform duration-500 hover:scale-[1.03] hover:z-20">
+<div class="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-110" data-alt="A gritty, high-contrast poster of a lone detective standing in a rain-slicked cyberpunk alleyway, illuminated by harsh crimson and deep indigo neon lights. The aesthetic is dark, moody, and highly detailed, perfectly matching a premium cinematic streaming platform." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBk-tgSP7ploNsz5G_w31R7uHN4YP3AkNpaCO_buNR8t-KGJZnte_8geBLwVxdx9Hq9dqWo_PiYzT2UaYzRWy86uwa6JYxKnDOkoa5WzvDnoJjmX5qHRE2L3D-Zf3iWbnDEFyvOhySrGdckl7GoV3bjC3dFc33l-t7hoy2kRuGVSBHSrPa5-Ek8m6pLJS5LTQzFMDbLIiR6BclYvXpvicyPcc62ve3Wch-vmgCWECSkDP6wQK-sCKBm5g')"></div>
+<div class="absolute inset-0 bg-gradient-to-t from-background via-background/20 to-transparent opacity-80 group-hover:opacity-90 transition-opacity"></div>
+<div class="absolute inset-0 border border-white/10 rounded-xl group-hover:border-tertiary/50 transition-colors duration-300 group-hover:glow-active"></div>
+<div class="absolute bottom-0 left-0 w-full p-stack-md translate-y-4 group-hover:translate-y-0 opacity-80 group-hover:opacity-100 transition-all duration-300">
+<div class="flex items-center gap-2 mb-2">
+<span class="px-2 py-0.5 rounded-full bg-secondary-container/30 text-secondary text-[10px] font-bold tracking-wider backdrop-blur-md border border-secondary/20">SCI-FI</span>
+<span class="text-on-surface-variant text-[10px]">2h 14m</span>
+</div>
+<h3 class="font-headline-md text-body-lg text-on-background font-bold drop-shadow-md">Neon Requiem</h3>
+</div>
+</div>
+<!-- Card 2 -->
+<div class="min-w-[280px] md:min-w-[320px] aspect-[2/3] relative rounded-xl overflow-hidden group snap-start cursor-pointer transition-transform duration-500 hover:scale-[1.03] hover:z-20">
+<div class="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-110" data-alt="A majestic fantasy landscape showing a massive, glowing crystalline floating city suspended above a dark, churning ocean. The lighting is ethereal, using soft teals and luminous whites against a dark stormy sky. The style is epic, immersive, and highly rendered." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuC8cbQ4k-EGV6G6mukZEUkzc5JtLyR-0ApSp4LxfEBiNg-spYtlbl7479qRPIMnuMT_NL8x0b1Tn5TcN9t1fsOa2yG83m2_vkvIoEOHagd6LRKE9jyrfFSm28mCIhftlTJBenqzvrftMZxCUO9S0QuMp4WAprZGNFD5lMwZYCqkj0PdpzLB5zWO4cF42z4fBQMdW-_BmC9r74n4JKUwZ6ahdiigR0IBuykJfEUQe8rwFRgYKGNzcP26wA')"></div>
+<div class="absolute inset-0 bg-gradient-to-t from-background via-background/20 to-transparent opacity-80 group-hover:opacity-90 transition-opacity"></div>
+<div class="absolute inset-0 border border-white/10 rounded-xl group-hover:border-tertiary/50 transition-colors duration-300 group-hover:glow-active"></div>
+<div class="absolute bottom-0 left-0 w-full p-stack-md translate-y-4 group-hover:translate-y-0 opacity-80 group-hover:opacity-100 transition-all duration-300">
+<div class="flex items-center gap-2 mb-2">
+<span class="px-2 py-0.5 rounded-full bg-tertiary/20 text-tertiary text-[10px] font-bold tracking-wider backdrop-blur-md border border-tertiary/20">FANTASY</span>
+<span class="text-on-surface-variant text-[10px]">1 Season</span>
+</div>
+<h3 class="font-headline-md text-body-lg text-on-background font-bold drop-shadow-md">Aether's Fall</h3>
+</div>
+</div>
+<!-- Card 3 -->
+<div class="min-w-[280px] md:min-w-[320px] aspect-[2/3] relative rounded-xl overflow-hidden group snap-start cursor-pointer transition-transform duration-500 hover:scale-[1.03] hover:z-20">
+<div class="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-110" data-alt="A tense, claustrophobic shot of an astronaut's helmet reflecting a massive, fiery supernova. The surrounding space is pitch black, emphasizing the vibrant oranges and electric blues of the explosion. The visual tone is dramatic and cinematic." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDZflftneZLGf1gLHGFsbfShBbGpLOwIk06YRuZovfGiVW3uWbtRhlwd4TpJqnF5AVU1NzQRE6tNrHlLhqeYmeIgfgduFx1o5dT7dRhl35BcBAVWu19cBURr5aErx8QyA5nMTy3cTHDSwS6eJtVWHQ1kzEfCISGvI1R4h1JR6aAQ4gMOP3rbWEjflAWetl5OTgu3B0lnJ_M1iyS1FHmuIv_qHkNKK4LtyiC837pTKGwWBb8YzIkBzJbVQ')"></div>
+<div class="absolute inset-0 bg-gradient-to-t from-background via-background/20 to-transparent opacity-80 group-hover:opacity-90 transition-opacity"></div>
+<div class="absolute inset-0 border border-white/10 rounded-xl group-hover:border-tertiary/50 transition-colors duration-300 group-hover:glow-active"></div>
+<div class="absolute bottom-0 left-0 w-full p-stack-md translate-y-4 group-hover:translate-y-0 opacity-80 group-hover:opacity-100 transition-all duration-300">
+<div class="flex items-center gap-2 mb-2">
+<span class="px-2 py-0.5 rounded-full bg-error/20 text-error text-[10px] font-bold tracking-wider backdrop-blur-md border border-error/20">THRILLER</span>
+<span class="text-on-surface-variant text-[10px]">1h 58m</span>
+</div>
+<h3 class="font-headline-md text-body-lg text-on-background font-bold drop-shadow-md">Event Horizon</h3>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Bottom Navigation (Mobile) -->
+<nav class="fixed bottom-0 left-0 w-full z-50 rounded-t-xl md:hidden bg-surface-container/60 backdrop-blur-2xl border-t border-white/10 shadow-[0_-10px_40px_rgba(76,215,246,0.1)] flex justify-around items-center h-20 px-gutter">
+<a class="flex flex-col items-center justify-center text-tertiary drop-shadow-[0_0_8px_rgba(76,215,246,0.5)] scale-110 transition-transform duration-300" href="#">
+<span class="material-symbols-outlined text-[24px]" style="font-variation-settings: 'FILL' 1;">movie_filter</span>
+<span class="font-label-sm text-[10px] mt-1">Home</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:text-on-surface scale-110 transition-transform duration-300" href="#">
+<span class="material-symbols-outlined text-[24px]">explore</span>
+<span class="font-label-sm text-[10px] mt-1">Explore</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:text-on-surface scale-110 transition-transform duration-300" href="#">
+<span class="material-symbols-outlined text-[24px]">auto_stories</span>
+<span class="font-label-sm text-[10px] mt-1">Library</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:text-on-surface scale-110 transition-transform duration-300" href="#">
+<span class="material-symbols-outlined text-[24px]">person</span>
+<span class="font-label-sm text-[10px] mt-1">Profile</span>
+</a>
+</nav>
+</body></html>

@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>CineFlow - Discovery</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600&amp;family=Sora:wght@600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "background": "#051424",
+                        "inverse-on-surface": "#233143",
+                        "tertiary": "#4cd7f6",
+                        "primary-container": "#05070a",
+                        "primary-fixed": "#e1e2e7",
+                        "surface-tint": "#c5c6cb",
+                        "surface-variant": "#273647",
+                        "surface-container-low": "#0d1c2d",
+                        "secondary-fixed": "#e9ddff",
+                        "surface-container-highest": "#273647",
+                        "surface": "#051424",
+                        "inverse-surface": "#d4e4fa",
+                        "surface-bright": "#2c3a4c",
+                        "on-primary-fixed": "#191c1f",
+                        "on-surface-variant": "#c6c6ca",
+                        "tertiary-fixed-dim": "#4cd7f6",
+                        "primary-fixed-dim": "#c5c6cb",
+                        "surface-container-high": "#1c2b3c",
+                        "tertiary-container": "#00080b",
+                        "secondary-fixed-dim": "#d0bcff",
+                        "on-secondary": "#3c0091",
+                        "on-secondary-fixed": "#23005c",
+                        "outline": "#8f9195",
+                        "on-error-container": "#ffdad6",
+                        "outline-variant": "#45474a",
+                        "on-error": "#690005",
+                        "secondary-container": "#571bc1",
+                        "surface-dim": "#051424",
+                        "on-secondary-fixed-variant": "#5516be",
+                        "on-primary-container": "#76787d",
+                        "error": "#ffb4ab",
+                        "secondary": "#d0bcff",
+                        "on-tertiary-container": "#00849a",
+                        "surface-container-lowest": "#010f1f",
+                        "on-tertiary-fixed-variant": "#004e5c",
+                        "inverse-primary": "#5c5e63",
+                        "on-secondary-container": "#c4abff",
+                        "on-primary": "#2e3134",
+                        "on-surface": "#d4e4fa",
+                        "on-tertiary": "#003640",
+                        "primary": "#c5c6cb",
+                        "on-primary-fixed-variant": "#44474b",
+                        "tertiary-fixed": "#acedff",
+                        "error-container": "#93000a",
+                        "on-tertiary-fixed": "#001f26",
+                        "surface-container": "#122131",
+                        "on-background": "#d4e4fa"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "stack-md": "16px",
+                        "stack-lg": "32px",
+                        "stack-sm": "8px",
+                        "section-gap": "80px",
+                        "container-padding": "40px",
+                        "unit": "8px",
+                        "gutter": "24px"
+                    },
+                    "fontFamily": {
+                        "label-sm": ["Plus Jakarta Sans"],
+                        "headline-lg-mobile": ["Sora"],
+                        "headline-lg": ["Sora"],
+                        "display-lg": ["Sora"],
+                        "body-lg": ["Plus Jakarta Sans"],
+                        "body-md": ["Plus Jakarta Sans"],
+                        "headline-md": ["Sora"]
+                    },
+                    "fontSize": {
+                        "label-sm": ["12px", { "lineHeight": "1", "letterSpacing": "0.05em", "fontWeight": "600" }],
+                        "headline-lg-mobile": ["32px", { "lineHeight": "1.2", "fontWeight": "700" }],
+                        "headline-lg": ["48px", { "lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "display-lg": ["72px", { "lineHeight": "1.1", "letterSpacing": "-0.04em", "fontWeight": "800" }],
+                        "body-lg": ["18px", { "lineHeight": "1.6", "fontWeight": "400" }],
+                        "body-md": ["16px", { "lineHeight": "1.6", "fontWeight": "400" }],
+                        "headline-md": ["32px", { "lineHeight": "1.3", "fontWeight": "600" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body {
+            background-color: #051424;
+            color: #d4e4fa;
+            overflow-x: hidden;
+        }
+
+        /* Ambient animated background */
+        .ambient-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: -1;
+            background: radial-gradient(circle at 20% 30%, rgba(87, 27, 193, 0.15) 0%, transparent 50%),
+                        radial-gradient(circle at 80% 70%, rgba(76, 215, 246, 0.1) 0%, transparent 50%);
+            animation: pulse-bg 15s infinite alternate ease-in-out;
+        }
+
+        @keyframes pulse-bg {
+            0% { transform: scale(1); opacity: 0.8; }
+            100% { transform: scale(1.1); opacity: 1; }
+        }
+
+        /* Glassmorphic Orbs */
+        .nebula-orb {
+            position: absolute;
+            border-radius: 50%;
+            background: linear-gradient(135deg, rgba(255,255,255,0.05), rgba(255,255,255,0.01));
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255,255,255,0.08);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: pointer;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.5), inset 0 0 20px rgba(76, 215, 246, 0.05);
+        }
+
+        .nebula-orb:hover {
+            transform: scale(1.1) translateY(-10px) !important; /* Override parallax slightly on hover */
+            border-color: rgba(76, 215, 246, 0.3);
+            box-shadow: 0 0 40px rgba(76, 215, 246, 0.2), inset 0 0 30px rgba(76, 215, 246, 0.1);
+            z-index: 10;
+        }
+        
+        .nebula-orb.action { box-shadow: 0 0 40px rgba(255, 100, 100, 0.1), inset 0 0 30px rgba(255, 100, 100, 0.05); }
+        .nebula-orb.action:hover { border-color: rgba(255, 100, 100, 0.3); box-shadow: 0 0 60px rgba(255, 100, 100, 0.3), inset 0 0 40px rgba(255, 100, 100, 0.15); }
+
+        .nebula-orb.scifi { box-shadow: 0 0 40px rgba(139, 92, 246, 0.1), inset 0 0 30px rgba(139, 92, 246, 0.05); }
+        .nebula-orb.scifi:hover { border-color: rgba(139, 92, 246, 0.3); box-shadow: 0 0 60px rgba(139, 92, 246, 0.3), inset 0 0 40px rgba(139, 92, 246, 0.15); }
+
+
+        .orb-content {
+            text-align: center;
+            transition: opacity 0.3s ease;
+        }
+
+        .orb-preview {
+            position: absolute;
+            inset: 0;
+            border-radius: 50%;
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(5, 7, 10, 0.8);
+        }
+
+        .nebula-orb:hover .orb-preview {
+            opacity: 1;
+        }
+        .nebula-orb:hover .orb-content {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .floating {
+            animation-name: float;
+            animation-iteration-count: infinite;
+            animation-timing-function: ease-in-out;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(2deg); }
+            100% { transform: translateY(0px) rotate(0deg); }
+        }
+
+        /* Parallax Container */
+        #nebula-container {
+            position: relative;
+            width: 100vw;
+            height: 100vh;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+    </style>
+</head>
+<body class="antialiased selection:bg-tertiary selection:text-background min-h-screen">
+<div class="ambient-bg"></div>
+<!-- Top Navigation (Shell logic applied: Desktop Top Nav) -->
+<nav class="fixed top-0 w-full z-50 bg-transparent backdrop-blur-xl bg-gradient-to-b from-background to-transparent transition-all ease-in-out duration-500 hidden md:flex">
+<div class="flex justify-between items-center px-container-padding py-stack-md w-full">
+<div class="font-display-lg text-headline-md tracking-tighter text-tertiary">
+                CineFlow
+            </div>
+<div class="flex gap-stack-lg items-center text-primary Headlines: font-headline-md text-headline-md, Labels: font-label-sm text-label-sm">
+<a class="text-on-surface-variant hover:text-tertiary transition-colors duration-300" href="#">Home</a>
+<a class="text-tertiary border-b-2 border-tertiary pb-1 transition-colors duration-300" href="#">Discovery</a>
+<a class="text-on-surface-variant hover:text-tertiary transition-colors duration-300" href="#">Library</a>
+</div>
+<div class="flex gap-stack-md text-primary">
+<span class="material-symbols-outlined cursor-pointer hover:text-tertiary duration-300" style="font-variation-settings: 'FILL' 0;">notifications</span>
+<span class="material-symbols-outlined cursor-pointer hover:text-tertiary duration-300" style="font-variation-settings: 'FILL' 0;">account_circle</span>
+</div>
+</div>
+</nav>
+<!-- Main Canvas: Nebula Layout -->
+<main id="nebula-container">
+<!-- Center Anchor Text -->
+<div class="absolute z-0 text-center pointer-events-none opacity-40">
+<h1 class="font-display-lg text-display-lg text-surface-variant select-none tracking-widest">DISCOVER</h1>
+<p class="font-body-lg text-body-lg text-surface-variant mt-stack-sm tracking-widest uppercase">The Infinite Cinematic Universe</p>
+</div>
+<!-- Orb: Sci-Fi -->
+<div class="nebula-orb scifi floating" data-depth="0.2" style="width: 350px; height: 350px; left: 15%; top: 20%; animation-duration: 8s; animation-delay: 0s;">
+<div class="orb-content">
+<span class="material-symbols-outlined text-[64px] text-secondary mb-stack-sm" style="font-variation-settings: 'FILL' 0;">rocket_launch</span>
+<h2 class="font-headline-md text-headline-md text-on-surface">Sci-Fi</h2>
+<p class="font-label-sm text-label-sm text-on-surface-variant uppercase mt-stack-sm tracking-widest">342 Titles</p>
+</div>
+<div class="orb-preview">
+<div class="absolute inset-0 bg-cover bg-center opacity-40 mix-blend-screen" data-alt="A futuristic sci-fi city scene viewed from space, glowing with neon blues and purples. Spaceships trail light as they move between massive metallic structures. The visual style is cinematic, high-fidelity, and evokes a premium glassmorphic interface layered over deep space. The mood is mysterious and technologically advanced." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCGnZiRAZLeZRbD8oJt-ARd5AOqOJgeZbh73pshgnrK_DsA7cyBzAMN5HOTuRGby2qGII3Vz8X5kPrUuSqjrKLH_jemfT2gyHZ0fpvXvWycl15AJg2eP6pUvkM6qa3v4LqHB6rIAQn8pj7BNfiAmvhG25r_YAivfKG-m44izTAzXoegm0nHLzDNZc-ykfc148TvEh708OiyVS5SNFLuYwjE10I6c5F-lcZm8DMkGfKbSAy-mW5TDbzYcQ');"></div>
+<div class="relative z-10 text-center px-stack-lg">
+<h3 class="font-headline-md text-body-lg text-white mb-stack-sm">Trending Now</h3>
+<ul class="font-label-sm text-label-sm text-on-surface-variant flex flex-col gap-unit">
+<li class="hover:text-tertiary cursor-pointer transition-colors">Quantum Horizon</li>
+<li class="hover:text-tertiary cursor-pointer transition-colors">Neon Echoes</li>
+<li class="hover:text-tertiary cursor-pointer transition-colors">Stellar Drift</li>
+</ul>
+</div>
+</div>
+</div>
+<!-- Orb: Action -->
+<div class="nebula-orb action floating" data-depth="0.4" style="width: 280px; height: 280px; left: 65%; top: 15%; animation-duration: 7s; animation-delay: 1.5s;">
+<div class="orb-content">
+<span class="material-symbols-outlined text-[48px] text-error mb-stack-sm" style="font-variation-settings: 'FILL' 0;">local_fire_department</span>
+<h2 class="font-headline-md text-headline-md text-on-surface">Action</h2>
+<p class="font-label-sm text-label-sm text-on-surface-variant uppercase mt-stack-sm tracking-widest">518 Titles</p>
+</div>
+<div class="orb-preview">
+<div class="absolute inset-0 bg-cover bg-center opacity-40 mix-blend-screen" data-alt="A high-octane cinematic still of a sports car drifting through a rain-slicked neon-lit city street at night. Bright red and orange sparks fly from the tires. The lighting is dramatic, high-contrast, designed to fit within a premium dark-mode cinematic streaming UI. The mood is intense and adrenaline-fueled." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBa3P8ovOW8escproGbZD0E8Ys3hrKo_ActsymVcmPNv1NJDRainzJtU43biu_I8tyhZsPo1A8AfJSXGxtXOSF-704GTuayTBmAM5wvYcPD603zLXRzvu_4uknRVV-b3ZNnKBFSmodn2ryNYAldqADHuEX1H0Tz6wvt8ZSLHbp1_s-ilx3CLKQhMFkekaqXtwW0rysM97hsz4I2Q5kfYGbkia9IeC9GMa4pxZPlixs4NGoRBQJzuzArqA');"></div>
+<div class="relative z-10 text-center px-stack-lg">
+<h3 class="font-headline-md text-body-lg text-white mb-stack-sm">Top Picks</h3>
+<ul class="font-label-sm text-label-sm text-on-surface-variant flex flex-col gap-unit">
+<li class="hover:text-tertiary cursor-pointer transition-colors">Velocity Red</li>
+<li class="hover:text-tertiary cursor-pointer transition-colors">The Apex</li>
+</ul>
+</div>
+</div>
+</div>
+<!-- Orb: Indie -->
+<div class="nebula-orb floating" data-depth="0.6" style="width: 220px; height: 220px; left: 45%; top: 60%; animation-duration: 9s; animation-delay: 0.5s;">
+<div class="orb-content">
+<span class="material-symbols-outlined text-[40px] text-tertiary mb-stack-sm" style="font-variation-settings: 'FILL' 0;">movie_filter</span>
+<h2 class="font-headline-md text-body-lg text-on-surface">Indie</h2>
+<p class="font-label-sm text-label-sm text-on-surface-variant uppercase mt-unit tracking-widest">129 Titles</p>
+</div>
+<div class="orb-preview">
+<div class="absolute inset-0 bg-cover bg-center opacity-40 mix-blend-screen" data-alt="A moody, atmospheric shot of a lone figure standing in a misty, overgrown forest at twilight. Soft, ethereal blue light filters through the trees. The aesthetic is indie-film, artsy, and contemplative, perfectly suited as background imagery for a premium streaming service interface. The mood is quiet and introspective." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCMW1BTTv4lyP3GoP5AVtGPTIEfQ9XaB05bIOhukqMubehY9ldri0RKD1RzTDeKtidWjZ9s--16_m5tGIwYrjJDzaR-fSjBu5mF24zN1ze8jP2oeAIfP4mwS9iGx7WQVN4l1l17Ympyf4EhADqB6HovV3cXqQmIoN4F56hrhhat-Gsjv4WieiFczfWXB3St2d2TDFfhJzRVpmbz-MYyqmeipTaKmeJdrsRZzu1aHBOorhGIEZFerF9WRg');"></div>
+<div class="relative z-10 text-center px-stack-lg">
+<h3 class="font-headline-md text-body-md text-white mb-stack-sm">Hidden Gems</h3>
+<p class="font-label-sm text-label-sm text-on-surface-variant">Explore unique voices.</p>
+</div>
+</div>
+</div>
+<!-- Orb: Horror -->
+<div class="nebula-orb floating" data-depth="0.8" style="width: 180px; height: 180px; left: 25%; top: 70%; animation-duration: 6s; animation-delay: 2s;">
+<div class="orb-content">
+<span class="material-symbols-outlined text-[32px] text-outline mb-stack-sm" style="font-variation-settings: 'FILL' 0;">psychology_alt</span>
+<h2 class="font-headline-md text-body-md text-on-surface">Horror</h2>
+</div>
+</div>
+<!-- Orb: Romance -->
+<div class="nebula-orb floating" data-depth="0.5" style="width: 200px; height: 200px; left: 75%; top: 65%; animation-duration: 8.5s; animation-delay: 3s;">
+<div class="orb-content">
+<span class="material-symbols-outlined text-[36px] text-[#ffb4ab] mb-stack-sm" style="font-variation-settings: 'FILL' 0;">favorite</span>
+<h2 class="font-headline-md text-body-md text-on-surface">Romance</h2>
+</div>
+</div>
+</main>
+<!-- Bottom Navigation (Shell logic applied: Mobile Nav) -->
+<nav class="fixed bottom-0 left-0 w-full z-50 rounded-t-xl md:hidden bg-surface-container/60 backdrop-blur-2xl border-t border-white/10 shadow-[0_-10px_40px_rgba(76,215,246,0.1)]">
+<div class="flex justify-around items-center h-20 px-gutter font-label-sm text-label-sm">
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:text-on-surface scale-110 transition-transform duration-300" href="#">
+<span class="material-symbols-outlined mb-1" style="font-variation-settings: 'FILL' 0;">movie_filter</span>
+                Home
+            </a>
+<a class="flex flex-col items-center justify-center text-tertiary drop-shadow-[0_0_8px_rgba(76,215,246,0.5)] scale-110 transition-transform duration-300" href="#">
+<span class="material-symbols-outlined mb-1" style="font-variation-settings: 'FILL' 1;">explore</span>
+                Explore
+            </a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:text-on-surface scale-110 transition-transform duration-300" href="#">
+<span class="material-symbols-outlined mb-1" style="font-variation-settings: 'FILL' 0;">auto_stories</span>
+                Library
+            </a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:text-on-surface scale-110 transition-transform duration-300" href="#">
+<span class="material-symbols-outlined mb-1" style="font-variation-settings: 'FILL' 0;">person</span>
+                Profile
+            </a>
+</div>
+</nav>
+<script>
+        // Simple parallax effect for desktop
+        document.addEventListener('mousemove', (e) => {
+            if (window.innerWidth >= 768) {
+                const orbs = document.querySelectorAll('.nebula-orb');
+                const mouseX = e.clientX / window.innerWidth - 0.5;
+                const mouseY = e.clientY / window.innerHeight - 0.5;
+
+                orbs.forEach(orb => {
+                    // Only apply parallax if not hovered
+                    if (!orb.matches(':hover')) {
+                        const depth = parseFloat(orb.getAttribute('data-depth')) || 0.5;
+                        const moveX = mouseX * 50 * depth;
+                        const moveY = mouseY * 50 * depth;
+                        orb.style.transform = `translate(${moveX}px, ${moveY}px)`;
+                    }
+                });
+            }
+        });
+        
+        // Reset transform on mouse leave to allow CSS float animation to look natural
+        document.addEventListener('mouseleave', () => {
+             const orbs = document.querySelectorAll('.nebula-orb');
+             orbs.forEach(orb => {
+                  if (!orb.matches(':hover')) {
+                      orb.style.transform = `translate(0px, 0px)`;
+                  }
+             });
+        });
+    </script>
+</body></html>

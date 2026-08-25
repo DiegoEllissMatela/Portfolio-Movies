@@ -1,0 +1,85 @@
+// ==========================================
+// CineFlow Design Tokens & Variables
+// ==========================================
+
+// Color Palette
+$color-bg: #05070a;
+$color-surface: #051424;
+$color-surface-dim: #051424;
+$color-surface-bright: #2c3a4c;
+$color-surface-lowest: #010f1f;
+$color-surface-low: #0d1c2d;
+$color-surface-container: #122131;
+$color-surface-high: #1c2b3c;
+$color-surface-highest: #273647;
+$color-surface-variant: #273647;
+
+$color-on-surface: #d4e4fa;
+$color-on-surface-variant: #c6c6ca;
+$color-outline: #8f9195;
+$color-outline-variant: #45474a;
+
+// Brand Accents
+$color-primary: #c5c6cb;
+$color-secondary: #d0bcff;
+$color-secondary-vivid: #8b5cf6;
+$color-secondary-container: #571bc1;
+$color-tertiary: #4cd7f6;
+$color-tertiary-vivid: #06b6d4;
+$color-tertiary-container: #003640;
+$color-error: #ffb4ab;
+$color-error-container: #93000a;
+
+// Gradients
+$gradient-brand: linear-gradient(135deg, $color-secondary-vivid, $color-tertiary);
+$gradient-accent: linear-gradient(135deg, #a855f7, #38bdf8);
+$gradient-card-overlay: linear-gradient(to top, rgba(5, 7, 10, 0.95) 0%, rgba(5, 7, 10, 0.4) 60%, transparent 100%);
+$gradient-hero-overlay: linear-gradient(to top, #05070a 0%, rgba(5, 7, 10, 0.7) 50%, rgba(5, 7, 10, 0.3) 100%);
+$gradient-hero-side: linear-gradient(to right, rgba(5, 7, 10, 0.9) 0%, rgba(5, 7, 10, 0.4) 50%, transparent 100%);
+$gradient-glass-border: linear-gradient(135deg, rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0.02));
+
+// Typography
+$font-family-heading: 'Sora', sans-serif;
+$font-family-body: 'Plus Jakarta Sans', sans-serif;
+
+$font-size-display-lg: clamp(1.75rem, 5vw, 4.5rem); // Scaled for mobile -> desktop
+$font-size-headline-lg: clamp(1.4rem, 3.5vw, 3rem);  
+$font-size-headline-md: clamp(1.25rem, 2.5vw, 2rem);  
+$font-size-headline-sm: clamp(1.05rem, 2vw, 1.5rem);  
+$font-size-body-lg: clamp(0.95rem, 1.5vw, 1.125rem);  
+$font-size-body-md: 1rem;                          // 16px
+$font-size-body-sm: 0.875rem;                      // 14px
+$font-size-label-sm: 0.75rem;                      // 12px
+
+// Spacing
+$spacing-unit: 8px;
+$spacing-xs: 4px;
+$spacing-sm: 8px;
+$spacing-md: 16px;
+$spacing-lg: 24px;
+$spacing-xl: 32px;
+$spacing-2xl: 48px;
+$spacing-section: 80px;
+$container-padding-desktop: 40px;
+$container-padding-mobile: 20px;
+
+// Border Radius
+$radius-sm: 0.25rem;
+$radius-md: 0.5rem;
+$radius-lg: 1rem;
+$radius-xl: 1.5rem;
+$radius-full: 9999px;
+
+// Transitions & Timing
+$transition-fast: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+$transition-base: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+$transition-slow: 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+$transition-bounce: 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+
+// Z-Index Stack
+$z-ambient: 0;
+$z-content: 10;
+$z-nav: 50;
+$z-sidebar: 60;
+$z-modal: 100;
+$z-toast: 110;

@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DNM Movies — Cinematic Nexus Interface</title>
+  <meta name="description" content="Immersive cinematic streaming interface powered by DNM Movies. Explore sci-fi, cyberpunk, action, and fantasy universes with high-fidelity sound and visuals." />
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%234cd7f6'%3E%3Cpath d='M18 4l2 4h-3l-2-4h-2l2 4h-3l-2-4H8l2 4H7L5 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V4h-4z'/%3E%3C/svg%3E" />
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Sora:wght@400;600;700;800&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0..1,0&display=swap" rel="stylesheet" />
+
+  <!-- Compiled DNM Movies SCSS Styles -->
+  <link rel="stylesheet" href="./design/css/main.css" />
+</head>
+<body>
+
+  <!-- Ambient Cinematic Glow Backdrop -->
+  <div class="c-ambient">
+    <div class="c-ambient__glow-1"></div>
+    <div class="c-ambient__glow-2"></div>
+    <div class="c-ambient__noise"></div>
+  </div>
+
+  <!-- Application Shell Layout -->
+  <div class="l-app">
+
+    <!-- Top Navigation Bar -->
+    <header class="c-topbar">
+      <div class="c-topbar__brand" onclick="window.location.hash='#home'">
+        <div class="c-topbar__logo">
+          <span class="c-icon c-icon--filled">movie_filter</span>
+          <span>DNM Movies</span>
+        </div>
+      </div>
+
+      <!-- Center Nav Links -->
+      <nav class="c-topbar__nav-links">
+        <a href="#home" class="c-topbar__link c-topbar__link--active">Home</a>
+        <a href="#discovery" class="c-topbar__link">Discovery</a>
+        <a href="#library" class="c-topbar__link">Library</a>
+      </nav>
+
+      <!-- Right Search & Actions -->
+      <div class="c-topbar__actions">
+        <div id="topbar-search"></div>
+        <button class="c-topbar__action-btn" id="topbar-notif-btn" aria-label="Notifications" title="Notifications">
+          <span class="c-icon">notifications</span>
+        </button>
+        <button class="c-topbar__action-btn" id="topbar-account-btn" aria-label="User Profile" title="Profile">
+          <span class="c-icon">account_circle</span>
+        </button>
+      </div>
+    </header>
+
+    <!-- Floating Mobile Hamburger (Visible only on mobile) -->
+    <button class="c-mobile-hamburger" id="mobile-hamburger-btn">
+      <span class="c-icon">menu</span>
+    </button>
+
+    <!-- Mobile Header Modal -->
+    <div id="mobile-header-modal" class="c-mobile-header-modal" style="display: none;">
+      <button class="c-mobile-header-modal__close" id="mobile-close-btn">
+        <span class="c-icon">close</span>
+      </button>
+      
+      <div class="c-mobile-header-modal__brand">
+        <span class="c-icon c-icon--filled">movie_filter</span>
+        <span>DNM Movies</span>
+      </div>
+      
+      <nav class="c-mobile-header-modal__nav">
+        <a href="#home" class="mobile-nav-link">Home</a>
+        <a href="#discovery" class="mobile-nav-link">Discovery</a>
+        <a href="#library" class="mobile-nav-link">Library</a>
+      </nav>
+      
+      <div class="c-mobile-header-modal__actions">
+        <button class="mobile-action-btn" id="mobile-notif-btn"><span class="c-icon">notifications</span> Notifications</button>
+        <button class="mobile-action-btn" id="mobile-account-btn"><span class="c-icon">account_circle</span> Profile</button>
+      </div>
+    </div>
+
+
+    <!-- Side Expandable Navigation Bar (Desktop) -->
+    <aside class="c-sidebar">
+      <a href="#home" class="c-sidebar__brand">
+        <span class="c-icon c-icon--filled c-sidebar__brand-icon">movie_filter</span>
+        <span class="c-sidebar__brand-text">DNM Movies</span>
+      </a>
+
+      <nav class="c-sidebar__menu">
+        <a href="#home" class="c-sidebar__item c-sidebar__item--active">
+          <span class="c-icon c-sidebar__icon">home_max</span>
+          <span class="c-sidebar__label">Home</span>
+        </a>
+        <a href="#discovery" class="c-sidebar__item">
+          <span class="c-icon c-sidebar__icon">travel_explore</span>
+          <span class="c-sidebar__label">Discovery</span>
+        </a>
+        <a href="#library" class="c-sidebar__item">
+          <span class="c-icon c-sidebar__icon">subscriptions</span>
+          <span class="c-sidebar__label">Collection</span>
+        </a>
+        <a href="#film/tt1856101" class="c-sidebar__item">
+          <span class="c-icon c-sidebar__icon">local_fire_department</span>
+          <span class="c-sidebar__label">Spotlight</span>
+        </a>
+      </nav>
+
+      <div class="c-sidebar__footer">
+        <a href="#library" class="c-sidebar__item">
+          <span class="c-icon c-sidebar__icon">settings</span>
+          <span class="c-sidebar__label">Settings</span>
+        </a>
+      </div>
+    </aside>
+
+    <!-- Main View Container -->
+    <div class="l-app__main">
+      <main class="l-app__view-container" id="app-view"></main>
+    </div>
+
+    <!-- Mobile Bottom Navigation -->
+    <nav class="c-mobile-nav">
+      <a href="#home" class="c-mobile-nav__item c-mobile-nav__item--active">
+        <span class="c-icon c-mobile-nav__icon">movie_filter</span>
+        <span class="c-mobile-nav__label">Home</span>
+      </a>
+      <a href="#discovery" class="c-mobile-nav__item">
+        <span class="c-icon c-mobile-nav__icon">explore</span>
+        <span class="c-mobile-nav__label">Explore</span>
+      </a>
+      <a href="#library" class="c-mobile-nav__item">
+        <span class="c-icon c-mobile-nav__icon">auto_stories</span>
+        <span class="c-mobile-nav__label">Library</span>
+      </a>
+      <a href="#film/tt1856101" class="c-mobile-nav__item">
+        <span class="c-icon c-mobile-nav__icon">local_fire_department</span>
+        <span class="c-mobile-nav__label">Spotlight</span>
+      </a>
+    </nav>
+
+  </div>
+
+  <!-- Modular Vanilla JS Logic -->
+  <script type="module" src="./logic/app.js"></script>
+</body>
+</html>
